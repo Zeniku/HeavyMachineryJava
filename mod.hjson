@@ -1,17 +1,17 @@
 #the mod name as displayed in-game
-displayName: "Java Mod Template"
+displayName: "HeavyMachineryJava"
 
 #the internal name of your mod
-name: "example-java-mod"
+name: "heavymachineryjava"
 
 #your name
-author: "You"
+author: "Zeniku"
 
 #the fully qualified main class of the mod
-main: "example.ExampleJavaMod"
+main: "heav.HeavyMachineryJava"
 
 #the mod description as seen in the mod dialog
-description: "A Mindustry Java mod template."
+description: "A Mindustry Java mod."
 
 #the mod version
 version: 1.0
@@ -19,3 +19,4 @@ version: 1.0
 #the minimum game build required to run this mod
 minGameVersion: 129
 
+java: true

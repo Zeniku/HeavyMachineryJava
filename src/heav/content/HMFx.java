@@ -1,0 +1,78 @@
+package heav.content;
+
+import arc.*;
+import arc.graphics.*;
+import arc.graphics.g2d.*;
+import arc.math.*;
+import arc.math.geom.*;
+import arc.struct.*;
+import arc.util.*;
+import mindustry.entities.*;
+import mindustry.game.*;
+import mindustry.gen.*;
+import mindustry.graphics.*;
+import mindustry.type.*;
+import mindustry.ui.*;
+import heav.util.*;
+
+import static arc.graphics.g2d.Draw.rect;
+import static arc.graphics.g2d.Draw.*;
+import static arc.graphics.g2d.Lines.*;
+import static arc.math.Angles.*;
+import static mindustry.Vars.*;
+
+public class HMFx {
+	private static final Rand rand = new Rand();
+  private static final Vec2 v1 = new Vec2(), v2 = new Vec2();
+
+  public static final Effect
+	
+	fakeLightning = new Effect(10f, 500f, e -> {
+		if(!(e.data instanceof LightningData)) return;
+		LightningData b = 
+    float tx = d.pos.getX(), ty = d.pos.getY(), dst = Mathf.dst(e.x, e.y, tx, ty);
+    v1.set(d.pos).sub(e.x, e.y).nor();
+
+    float normx = v1.x, normy = v1.y;
+    float range = 6f;
+    int links = Mathf.ceil(dst / range);
+    float spacing = dst / links;
+
+    Lines.stroke(d.stroke * e.fout());
+    Draw.color(Color.white, e.color, e.fin());
+
+    Lines.beginLine();
+
+    Lines.linePoint(e.x, e.y);
+
+    rand.setSeed(e.id);
+
+    for(int i = 0; i < links; i++){
+      float nx, ny;
+      if(i == links - 1){
+        nx = tx;
+        ny = ty;
+      }else{
+        float len = (i + 1) * spacing;
+        v1.setToRandomDirection(rand).scl(range/2f);
+        nx = e.x + normx * len + v1.x;
+        ny = e.y + normy * len + v1.y;
+      }
+			
+      Lines.linePoint(nx, ny);
+    }
+    Lines.endLine();
+  });
+	
+	
+	
+	public static class LightningData{
+    Position pos;
+    float stroke;
+
+    public LightningData(Position pos, float stroke){
+      this.pos = pos;
+      this.stroke = stroke;
+    };
+  };
+};

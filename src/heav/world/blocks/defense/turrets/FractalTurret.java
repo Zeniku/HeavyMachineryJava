@@ -3,6 +3,7 @@ package heav.world.blocks.defense.turrets;
 import arc.*;
 import arc.util.*;
 import arc.math.*;
+import arc.math.geom.*;
 import arc.scene.ui.layout.*;
 import arc.struct.*;
 import arc.util.io.*;
@@ -11,6 +12,7 @@ import mindustry.content.*;
 import mindustry.entities.bullet.*;
 import mindustry.gen.*;
 import mindustry.type.*;
+import mindustry.world.blocks.defense.turrets.*;
 
 import static mindustry.Vars.*;
 
@@ -32,8 +34,8 @@ public class FractalTurret extends DisabledPredictTurret{
           Tmp.v1.set(tp);
       }
       
-      float rx = Tmp.x + Angles.trnsx(Mathf.random(360), Mathf.random(range));
-      float ry = Tmp.y + Angles.trnsy(Mathf.random(360), Mathf.random(range));
+      float rx = Tmp.v1.x + Angles.trnsx(Mathf.random(360), Mathf.random(range));
+      float ry = Tmp.v1.y + Angles.trnsy(Mathf.random(360), Mathf.random(range));
       
       float ang = Angles.angle(rx, ry, tp.x, tp.y);
       

@@ -15,13 +15,14 @@ import mindustry.ui.*;
 import mindustry.world.consumers.*;
 import mindustry.world.meta.*;
 import mindustry.world.meta.values.*;
+import mindustry.world.blocks.defense.turrets.*;
 
 import static mindustry.Vars.*;
 
 public class DisabledPredictTurret extends PowerTurret{
   
   public DisabledPredictTurret(String name){
-    super(name)
+    super(name);
   }
   
   public class DisabledPredictTurretBuild extends PowerTurretBuild{
@@ -30,7 +31,7 @@ public class DisabledPredictTurret extends PowerTurret{
     public void targetPosition(Posc pos){
       if(!hasAmmo() || pos == null) return;
       
-      targetPos.set(pos)
+      targetPos.set(pos);
       if(targetPos.isZero()){
         targetPos.set(pos);
       }

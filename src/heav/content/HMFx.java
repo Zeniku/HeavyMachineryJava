@@ -27,9 +27,8 @@ public class HMFx {
 
   public static final Effect
 	
-	fakeLightning = new Effect(10f, 500f, e -> {
-		if(!(e.data instanceof LightningData)) return;
-		LightningData b = 
+  fakeLightning = new Effect(10f, 500f, e -> {
+    if(!(e.data instanceof LightningData d)) return;
     float tx = d.pos.getX(), ty = d.pos.getY(), dst = Mathf.dst(e.x, e.y, tx, ty);
     v1.set(d.pos).sub(e.x, e.y).nor();
 
@@ -58,11 +57,44 @@ public class HMFx {
         nx = e.x + normx * len + v1.x;
         ny = e.y + normy * len + v1.y;
       }
-			
+
       Lines.linePoint(nx, ny);
     }
+
     Lines.endLine();
-  });
+  }).followParent(false).layer(Layer.bullet + 0.01f),
+    
+    //[length, width, team]
+  fakeLightningFast = new Effect(5f, 500f, e -> {
+    Object[] data = (Object[])e.data;
+
+    float length = (float)data[0];
+    int tileLength = Mathf.round(length / tilesize);
+        
+    Lines.stroke((float)data[1] * e.fout());
+    Draw.color(e.color, Color.white, e.fin());
+        
+    for(int i = 0; i < tileLength; i++){
+      float offsetXA = i == 0 ? 0f : Mathf.randomSeed(e.id + (i * 6413), -4.5f, 4.5f);
+      float offsetYA = (length / tileLength) * i;
+            
+      int f = i + 1;
+            
+      float offsetXB = f == tileLength ? 0f : Mathf.randomSeed(e.id + (f * 6413), -4.5f, 4.5f);
+      float offsetYB = (length / tileLength) * f;
+            
+      v1.trns(e.rotation, offsetYA, offsetXA);
+      v1.add(e.x, e.y);
+            
+      v2.trns(e.rotation, offsetYB, offsetXB);
+      v2.add(e.x, e.y);
+            
+      Lines.line(v1.x, v1.y, v2.x, v2.y, false);
+      Fill.circle(v1.x, v1.y, Lines.getStroke() / 2f);
+      Drawf.light((Team)data[2], v1.x, v1.y, v2.x, v2.y, (float)data[1] * 3f, e.color, 0.4f);
+    }
+    Fill.circle(v2.x, v2.y, Lines.getStroke() / 2);
+  }).layer(Layer.bullet + 0.01f),
 	
 	
 	

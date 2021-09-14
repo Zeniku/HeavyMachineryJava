@@ -45,7 +45,7 @@ public class HMDraw {
       stroke(1);
     });
   }
-  public static void splashCircle(float x, float y, float radius, Color colorFrom, colorTo, float inOut, long id, int amount, float distance, float rotation, float cone){
+  public static void splashCircle(float x, float y, float radius, Color colorFrom, Color colorTo, float inOut, long id, int amount, float distance, float rotation, float cone){
     color(colorFrom, colorTo, inOut);
     splashCircle(x, y, radius, id, amount, distance, rotation, cone);
   }

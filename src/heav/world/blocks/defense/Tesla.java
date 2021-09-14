@@ -24,8 +24,8 @@ public class Tesla extends Block{
 	public float range = 120f;
   public float reloadTime = 20f;
   public float damage = 20f;
-	public float lightningCount = 3f;
-  public float lightningLength = 10f;
+	public int lightningCount = 3f;
+  public int lightningLength = 10f;
   public float lightningLengthRand = 6f;
   public Color lightningColor = Pal.lancerLaser;
   public Effect hitEffect = Fx.none;

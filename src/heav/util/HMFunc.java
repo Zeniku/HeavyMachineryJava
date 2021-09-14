@@ -2,6 +2,7 @@ package heav.util;
 
 import arc.math.*;
 import arc.func.*;
+import arc.math.geom.*;
 import mindustry.game.*;
 import mindustry.entities.*;
 import mindustry.content.*;

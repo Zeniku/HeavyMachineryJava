@@ -120,8 +120,8 @@ public class StatusEffectProjector extends Block{
 			super.draw();
 			if(consValid()){
 			  Draw.z(Layer.effect - 0.01f);
-				HMDraw.spikeii(x, y, starColor, 2f * 2.9f + Mathf.absin(Time.time, 5f, 1f) + Mathf.random(0.1f),  2f * Time.time);
-				HMDraw.spikeii(x, y, Color.white, 2f * 1.9f + Mathf.absin(Time.time, 5f, 1f) + Mathf.random(0.1f),  2f * Time.time);
+				HMDraw.spike(x, y, starColor, 2f * 2.9f + Mathf.absin(Time.time, 5f, 1f) + Mathf.random(0.1f),  2f * Time.time);
+				HMDraw.spike(x, y, Color.white, 2f * 1.9f + Mathf.absin(Time.time, 5f, 1f) + Mathf.random(0.1f),  2f * Time.time);
 			};
 		}
 		

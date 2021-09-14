@@ -97,7 +97,7 @@ public class HMFx {
   }).layer(Layer.bullet + 0.01f),
 	
 	flameBurst = new Effect(40, e -> {
-	  HMDraw.splashCircleii(e.x, e.y, Pal.lightPyraFlame, Pal.darkFlame, e.fin(), e.fout() * 2.5f, e.id, 3, 2f + e.fin() * 9f, e.rotation, 360f);
+	  HMDraw.splashCircle(e.x, e.y, e.fout() * 2.5f, Pal.lightPyraFlame, Pal.darkFlame, e.fin(), e.id, 3, 2f + e.fin() * 9f, e.rotation, 360f);
 	});
 	
 	public static class LightningData{

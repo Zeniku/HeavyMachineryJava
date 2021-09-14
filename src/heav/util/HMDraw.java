@@ -46,12 +46,12 @@ public class HMDraw {
     });
   }
   public static void splashCircle(float x, float y, float radius, Color colorFrom, colorTo, float inOut, long id, int amount, float distance, float rotation, float cone){
-    color(colorFrom, colorTo, inOut)
-    splashCircle(x, y, radius, id, amount, distance, rotation, cone)
+    color(colorFrom, colorTo, inOut);
+    splashCircle(x, y, radius, id, amount, distance, rotation, cone);
   }
   public static void splashCircle(float x, float y, float radius, Color color, long id, int amount, float distance, float rotation, float cone){
-    color(color)
-    splashCircle(x, y, radius, id, amount, distance, rotation, cone)
+    color(color);
+    splashCircle(x, y, radius, id, amount, distance, rotation, cone);
   }
   public static void splashCircle(float x, float y, float radius, long id, int amount, float distance, float rotation, float cone){
     randLenVectors(id, amount, distance, rotation, cone, (a, b) -> {

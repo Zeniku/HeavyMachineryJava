@@ -28,13 +28,26 @@ public class HMDraw {
     };
   }
   public void spikeii(float x,float y, Color color, float size, float rotation) {
-    Draw.color(color);
+    color(color);
     spike(x, y, 4, size, 2f, rotation);
-    Draw.color();
+    color();
   }
   public void spikeiii(float x,float y, Color colorFrom, Color colorTo, float inOut, float size, float rotation) {
-    Draw.color(colorFrom, colorTo, inOut);
+    color(colorFrom, colorTo, inOut);
     spike(x, y, 4, size, 2f, rotation);
-    Draw.color();
+    color();
 	}
+	public void splashLine(float x, float y, float thickness, float length, long id, int amount, float distance, float rotation, float cone){
+    randLenVectors(id, amount, distance, rotation, cone, (a, b) -> {
+      float ang = Mathf.angle(a, b);
+      stroke(thickness);
+      lineAngle(x + a, y + b, ang, length);
+      stroke(1);
+    });
+  }
+  public void splashCircle(float x, float y, float radius, long id, int amount, float distance, float rotation, float cone){
+    randLenVectors(id, amount, distance, rotation, cone, (a, b) -> {
+      Fill.circle(x + a, y + b, radius);
+    });
+  }
 }

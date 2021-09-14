@@ -17,10 +17,9 @@ import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import heav.world.blocks.defense.*;
+import heav.content.*;
 
 import static mindustry.type.ItemStack.*;
-import heav.world.blocks.defense.StatusEffectProjector;
-import heav.world.blocks.defense.Tesla;
 
 public class HMBlocks implements ContentList{
   public static Block
@@ -32,7 +31,7 @@ public class HMBlocks implements ContentList{
   @Override
 	public void load(){
 		statusEffectProjector = new StatusEffectProjector("statusEffectProjector"){{
-			
+			statusFxEnemies = HMFx.flameBurst;
 		}};
 		
 		tesla = new Tesla("tesla"){{

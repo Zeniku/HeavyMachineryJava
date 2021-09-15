@@ -98,6 +98,12 @@ public class HMFx {
 	
 	flameBurst = new Effect(40, e -> {
 	  HMDraw.splashCircle(e.x, e.y, e.fout() * 2.5f, Pal.lightPyraFlame, Pal.darkFlame, e.fin(), e.id, 3, 2f + e.fin() * 9f, e.rotation, 360f);
+	}),
+	
+	blockSplash = new Effect(40, e -> {
+	  //e.rotation = block size soo h;
+	  Lines.stroke((2 + e.rotation) * e.fout(), e.color);
+    Lines.square(e.x, e.y, ((8 * e.rotation) / 2) * e.fin());
 	});
 	
 	public static class LightningData{

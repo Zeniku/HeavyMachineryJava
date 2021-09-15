@@ -10,8 +10,8 @@ import mindustry.entities.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.world.*;
-import mindustry.world.blocks*;
-import mindustry.world.blocks.defense*;
+import mindustry.world.blocks.*;
+import mindustry.world.blocks.defense.*;
 import mindustry.world.meta.*;
 import heav.content.*;
 

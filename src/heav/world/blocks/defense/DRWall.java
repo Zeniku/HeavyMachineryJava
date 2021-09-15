@@ -30,7 +30,7 @@ public class DRWall extends Wall{
     
     @Override
     public boolean collision(Bullet bullet){
-      if(dRPercentage > 0 && dRChance){
+      if(dRPercentage > 0 && dRChance > 0){
         HMFx.blockSplash.at(x, y, size, hitColor);
       };
       

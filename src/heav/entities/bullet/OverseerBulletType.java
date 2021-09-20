@@ -17,12 +17,12 @@ public class OverseerBulletType extends BasicBulletType{
     super(speed, damage, sprite);
     pierce = true;
     pierceCap = 10;
-    hitEffect = Fx.hitLancer
+    hitEffect = Fx.hitLancer;
     drawSize = 300f;
     hitColor = Pal.lancerLaser;
   }
 
-  public CritBulletType(float speed, float damage){
+  public OverseerBulletType(float speed, float damage){
     this(speed, damage, "bullet");
   }
   

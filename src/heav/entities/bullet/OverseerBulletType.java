@@ -2,15 +2,18 @@ package heav.entities.bullet;
 
 import arc.math.*;
 import arc.graphics.*;
+import arc.util.*;
 import mindustry.entities.bullet.*;
 import mindustry.gen.*;
 import mindustry.content.*;
 import mindustry.graphics.*;
 import mindustry.world.blocks.defense.*;
+import mindustry.world.blocks.defense.turrets.*;
 
 public class OverseerBulletType extends BasicBulletType{
   public int trailLength = 15;
   public float trailWidth = 10;
+  public float targetTime = 15;
   public boolean homeStop = false;
   public Color trailColor = Pal.lancerLaser;
   

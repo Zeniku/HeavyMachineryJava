@@ -1,8 +1,10 @@
 package heav.entities.bullet;
 
 import arc.math.*;
+import arc.graphics.*;
 import mindustry.entities.bullet.*;
 import mindustry.gen.*;
+import mindustry.content.*;
 import mindustry.graphics.*;
 import mindustry.world.blocks.defense.*;
 
@@ -11,10 +13,10 @@ public class OverseerBulletType extends BasicBulletType{
   public float trailWidth = 10;
   public boolean homeStop = false;
   public Color trailColor = Pal.lancerLaser;
-  public Effect trailEffect = Fx.none;
   
   public OverseerBulletType(float speed, float damage, String sprite){
     super(speed, damage, sprite);
+    trailEffect = Fx.none;
     pierce = true;
     pierceCap = 10;
     hitEffect = Fx.hitLancer;
@@ -48,7 +50,7 @@ public class OverseerBulletType extends BasicBulletType{
 		  ty = t.targetPos.y;
 	  };
 	  
-	  float ang = Angles.moveToward(b.rotation(), b.angleTo(tx, ty), turningPower * Time.delta * 50f);
+	  float ang = Angles.moveToward(b.rotation(), b.angleTo(tx, ty), homingPower * Time.delta * 50f);
 	  
 	  if(b.within(tx, ty, hitSize / 2f)){
 		  if(homeStop){
@@ -56,21 +58,23 @@ public class OverseerBulletType extends BasicBulletType{
 			}
 		}
 		
-		if(b.timer.get(0, targetTime)){
-		  if(homeStop){
-			  if(d.home){
-	        b.rotation(ang);
-		      b.vel.setAngle(ang);
-			  }
-		  }else{
-			  b.rotation(ang);
-			  b.vel.setAngle(ang);
-			}
-	  }
+		if(homingPower > 0.0001f && b.time >= homingDelay){
+      if(b.timer.get(0, targetTime)){
+      	if(d.home){
+      	  b.rotation(ang);
+      	  b.vel.setAngle(ang);
+        }
+      }
+    }
+
+    if(weaveMag > 0){
+      b.vel.rotate(Mathf.sin(b.time + Mathf.PI * weaveScale/2f, weaveScale, weaveMag * (Mathf.randomSeed(b.id, 0, 1) == 1 ? -1 : 1)) * Time.delta);
+    }
+    
 	  
 		if(trailEffect != Fx.none || trailEffect != null){
 		  if(Mathf.chanceDelta(1)){
-		    trailEffect.at(b.x, b.y, b.rotation());
+		    trailEffect.at(b.x, b.y, trailParam, trailColor);
 		  };
 	  }else{
 	    d.trail.update(tx, ty);

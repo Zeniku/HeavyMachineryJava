@@ -15,11 +15,11 @@ import mindustry.content.*;
 public class OrbiterBulletType extends OverseerBulletType{
   public int orbiters = 4;
   public int orbiterTrailLength = 15;
-  public float orbitSpeed = 1;
-  public float orbitRadius = 3;
-  public float orbiterST = 15;
-  public float orbiterRadius = 4;
-  public float orbiterTrailWidth = 10;
+  public float orbitSpeed = 1f;
+  public float orbitRadius = 3f;
+  public float orbiterST = 15f;
+  public float orbiterRadius = 4f;
+  public float orbiterTrailWidth = 10f;
   public Effect orbiterTrailEffect = Fx.none;
   public BulletType orbiter = Bullets.standardCopper;
   

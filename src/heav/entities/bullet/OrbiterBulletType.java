@@ -3,7 +3,9 @@ package heav.entities.bullet;
 import arc.math.*;
 import arc.math.geom.*;
 import arc.struct.*;
+import arc.util.*;
 import arc.graphics.*;
+import arc.graphics.g2d.*;
 import mindustry.graphics.*;
 import mindustry.gen.*;
 import mindustry.entities.*;
@@ -57,10 +59,8 @@ public class OrbiterBulletType extends OverseerBulletType{
     
     if(b.timer(0, orbiterST)){
       for(int i = 0; i < d.trails.size; i++){
-        orbiter.create(b.owner, oX.get(i), oY.get(i), b.rotation());
+        orbiter.create(b, oX.get(i), oY.get(i), b.rotation());
       };
-      Draw.color(backColor);
-      Fill.circle(ox[i], oy[i], orbiterRadius * b.fout());
     };
     super.update(b);
   };
@@ -72,6 +72,8 @@ public class OrbiterBulletType extends OverseerBulletType{
       if(!(trailEffect != Fx.none && trailEffect != null)){
         d.trails.get(i).draw(backColor, orbiterTrailWidth * b.fout());
       }
+      Draw.color(backColor);
+      Fill.circle(oX.get(i), oY.get(), orbiterRadius * b.fout());
     }
     super.draw(b);
   }
@@ -83,7 +85,7 @@ public class OrbiterBulletType extends OverseerBulletType{
     public OrbiterBulletData(Trail mainTrail, int trails, int trailLength, float x, float y){
       super(mainTrail);
       for(int i = 0; i < trails; i++){
-        this.trails.add(new Trial(trailLength));
+        this.trails.add(new Trail(trailLength));
         this.oX.add(x);
         this.oY.add(y);
       }

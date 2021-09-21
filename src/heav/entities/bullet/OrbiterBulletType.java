@@ -73,7 +73,7 @@ public class OrbiterBulletType extends OverseerBulletType{
         d.trails.get(i).draw(backColor, orbiterTrailWidth * b.fout());
       }
       Draw.color(backColor);
-      Fill.circle(d.oX.get(i), d.oY.get(), orbiterRadius * b.fout());
+      Fill.circle(d.oX.get(i), d.oY.get(i), orbiterRadius * b.fout());
     }
     super.draw(b);
   }

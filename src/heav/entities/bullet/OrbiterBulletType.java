@@ -53,7 +53,7 @@ public class OrbiterBulletType extends OverseerBulletType{
           orbiterTrailEffect.at(oX.get(i), oY.get(i), trailParam, trailColor);
         };
       }else{
-        d.trails.update(oX.get(i), oY.get(i));
+        d.trails.get(i).update(oX.get(i), oY.get(i));
       }
     };
     
@@ -73,7 +73,7 @@ public class OrbiterBulletType extends OverseerBulletType{
         d.trails.get(i).draw(backColor, orbiterTrailWidth * b.fout());
       }
       Draw.color(backColor);
-      Fill.circle(oX.get(i), oY.get(), orbiterRadius * b.fout());
+      Fill.circle(d.oX.get(i), d.oY.get(), orbiterRadius * b.fout());
     }
     super.draw(b);
   }

@@ -23,8 +23,9 @@ public class OverseerBulletType extends BasicBulletType{
     pierce = true;
     pierceCap = 10;
     hitEffect = Fx.hitLancer;
-    drawSize = 300f;
     hitColor = Pal.lancerLaser;
+    frontColor = Color.white;
+    backColor = Pal.lancerLaser;
   }
 
   public OverseerBulletType(float speed, float damage){
@@ -74,7 +75,6 @@ public class OverseerBulletType extends BasicBulletType{
       b.vel.rotate(Mathf.sin(b.time + Mathf.PI * weaveScale/2f, weaveScale, weaveMag * (Mathf.randomSeed(b.id, 0, 1) == 1 ? -1 : 1)) * Time.delta);
     }
     
-	  
 		if(trailEffect != Fx.none || trailEffect != null){
 		  if(Mathf.chanceDelta(1)){
 		    trailEffect.at(b.x, b.y, trailParam, trailColor);

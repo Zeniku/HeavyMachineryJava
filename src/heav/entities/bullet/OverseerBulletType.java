@@ -45,24 +45,24 @@ public class OverseerBulletType extends BasicBulletType{
     if(!(b.data instanceof OverseerBulletData d)) return;
     
     float tx = 0, ty = 0;
-		if(b.owner instanceof Unit u){
-		  tx = u.aimX;
-		  ty = u.aimY;
-		};
-	 	if(b.owner instanceof Turret.TurretBuild t){
-		  tx = t.targetPos.x;
-		  ty = t.targetPos.y;
-	  };
-	  
-	  float ang = Angles.moveToward(b.rotation(), b.angleTo(tx, ty), homingPower * Time.delta * 50f);
-	  
-	  if(b.within(tx, ty, hitSize / 2f)){
-		  if(homeStop){
-	      d.home = false;
-			}
-		}
-		
-		if(homingPower > 0.0001f && b.time >= homingDelay){
+    if(b.owner instanceof Unit u){
+      tx = u.aimX;
+      ty = u.aimY;
+    };
+    if(b.owner instanceof Turret.TurretBuild t){
+      tx = t.targetPos.x;
+      ty = t.targetPos.y;
+    };
+
+    float ang = Angles.moveToward(b.rotation(), b.angleTo(tx, ty), homingPower * Time.delta * 50f);
+
+    if(b.within(tx, ty, hitSize / 2f)){
+      if(homeStop){
+	d.home = false;
+      }
+    }
+
+    if(homingPower > 0.0001f && b.time >= homingDelay){
       if(b.timer.get(0, targetTime)){
       	if(d.home){
       	  b.rotation(ang);
@@ -74,16 +74,17 @@ public class OverseerBulletType extends BasicBulletType{
     if(weaveMag > 0){
       b.vel.rotate(Mathf.sin(b.time + Mathf.PI * weaveScale/2f, weaveScale, weaveMag * (Mathf.randomSeed(b.id, 0, 1) == 1 ? -1 : 1)) * Time.delta);
     }
-    
-		if(trailEffect != Fx.none || trailEffect != null){
-		  if(Mathf.chanceDelta(1)){
-		    trailEffect.at(b.x, b.y, trailParam, trailColor);
-		  };
-	  }else{
-	    d.trail.update(tx, ty);
-	  }
+
+    if(trailEffect != Fx.none || trailEffect != null){
+      if(Mathf.chanceDelta(1)){
+        trailEffect.at(b.x, b.y, trailParam, trailColor);
+      };
+    }else{
+     d.trail.update(tx, ty);
+    }
+
   }
-  
+
   @Override
   public void draw(Bullet b){
     if(!(b.data instanceof OverseerBulletData d)) return;

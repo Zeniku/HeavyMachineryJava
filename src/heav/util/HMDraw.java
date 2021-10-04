@@ -45,6 +45,15 @@ public class HMDraw {
       stroke(1);
     });
   }
+  public static void lineCircle(float x, float y, Color color, float thickness, float radius){
+    color(color);
+    lineCircle(x, y, thickness, radius);
+  } 
+  public static void lineCircle(float x, float y, float thickness, float radius){
+    Lines.stroke(thickness);
+    Lines.circle(x, y, radius);
+    Lines.stroke(1);
+  }
   public static void splashCircle(float x, float y, float radius, Color colorFrom, Color colorTo, float inOut, long id, int amount, float distance, float rotation, float cone){
     color(colorFrom, colorTo, inOut);
     splashCircle(x, y, radius, id, amount, distance, rotation, cone);

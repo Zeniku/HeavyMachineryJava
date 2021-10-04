@@ -104,8 +104,17 @@ public class HMFx {
 	  //e.rotation = block size soo h;
 	  Lines.stroke((2 + e.rotation) * e.fout(), e.color);
     Lines.square(e.x, e.y, ((8 * e.rotation) / 2) * e.fin());
-	});
-	
+	}),
+
+  spark = new Effect(40, e -> {
+    Draw.color(Pal.lancerLaser);
+    HMDraw.splashLine(e.x, e.y, 4 * e.fout(), 3 * e.fin(), e.id, 4, e.finpow() * 16, e.rotation, 45);
+  }),
+
+  healWave = new Effect(22, e -> {
+    HMDraw.lineCircle(e.x, e.y, Pal.heal, e.fout() * 3, 4 + e.finpow() * (8 * 15));
+  });
+
 	public static class LightningData{
     Position pos;
     float stroke;

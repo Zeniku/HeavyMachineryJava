@@ -23,7 +23,8 @@ import static mindustry.type.ItemStack.*;
 
 public class HMBlocks implements ContentList{
   public static Block
-	
+	//walls
+	lonsdaleiteWall, lonsdaleiteWallLarge,
 	//defense
 	statusEffectProjector, tesla;
   
@@ -32,10 +33,22 @@ public class HMBlocks implements ContentList{
 	public void load(){
 		statusEffectProjector = new StatusEffectProjector("statusEffectProjector"){{
 			statusFxEnemies = HMFx.flameBurst;
+			healEffect = HMFx.healWave;
 		}};
 		
 		tesla = new Tesla("tesla"){{
-				
+			hitEffect = HMFx.spark;
 		}};
+
+		lonsdaleiteWall = new DRWall("lonsdaleiteWall"){{
+      dRChance = 15;
+      dRPercentage = 20;
+		}};
+
+		lonsdaleiteWallLarge = new DRWall("lonsdaleiteWallLarge"){{
+      dRChance = 15;
+      dRPercentage = 45;
+		}};
+
 	}
 }

@@ -17,7 +17,6 @@ import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import heav.world.blocks.defense.*;
-import heav.content.*;
 
 import static mindustry.type.ItemStack.*;
 

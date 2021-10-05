@@ -34,10 +34,16 @@ public class HMBlocks implements ContentList{
 		statusEffectProjector = new StatusEffectProjector("statusEffectProjector"){{
 			statusFxEnemies = HMFx.flameBurst;
 			healEffect = HMFx.healWave;
+      size = 3;
+      health = 900;
+      requirements(Category.effect, with(Items.titanium, 200, Items.plastanium, 100, Items.silicon, 200, Items.graphite, 300));
 		}};
 		
 		tesla = new Tesla("tesla"){{
 			hitEffect = HMFx.spark;
+      size = 3;
+      health = 1500;
+  	  requirements(Category.effect, with(Items.titanium, 150, Items.plastanium, 150, HMItems.lonsdaleite, 100, Items.silicon, 200, Items.graphite, 300));
 		}};
 
 		lonsdaleiteWall = new DRWall("lonsdaleiteWall"){{
@@ -53,6 +59,5 @@ public class HMBlocks implements ContentList{
 		  health = 2800;
 			requirements(Category.defense, with(HMItems.lonsdaleite, 24, Items.phaseFabric, 24));
 		}};
-
 	}
 }

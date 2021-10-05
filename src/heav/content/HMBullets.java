@@ -30,5 +30,21 @@ public class HMBullets implements ContentList{
       ammoMultiplier = 5;
 			lifetime = 60f * 2f;
 		}};
+    mediumOverseer = new OverseerBulletType(3f, 28){{
+			width = 9f;
+      height = 11f;
+			homingPower = 0.08f;
+      reloadMultiplier = 2f;
+      ammoMultiplier = 5;
+			lifetime = 60f * 2f;
+		}};
+		highOverseer = new OverseerBulletType(3f, 49){{
+			width = 11f;
+      height = 13f;
+			homingPower = 0.1f;
+      reloadMultiplier = 4f;
+      ammoMultiplier = 7;
+			lifetime = 60f * 4f;
+		}};
 	}
 }

@@ -17,6 +17,7 @@ import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import heav.world.blocks.defense.*;
+import heav.world.blocks.defense.turrets.*;
 
 import static mindustry.type.ItemStack.*;
 
@@ -24,6 +25,8 @@ public class HMBlocks implements ContentList{
   public static Block
 	//walls
 	lonsdaleiteWall, lonsdaleiteWallLarge,
+	//turrets
+	
 	//defense
 	statusEffectProjector, tesla;
   

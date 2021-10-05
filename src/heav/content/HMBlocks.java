@@ -41,13 +41,17 @@ public class HMBlocks implements ContentList{
 		}};
 
 		lonsdaleiteWall = new DRWall("lonsdaleiteWall"){{
-      dRChance = 15;
-      dRPercentage = 20;
+      dRChance = 15f;
+      dRPercentage = 20f;
+      health = 520;
+      requirements(Category.defense, with(HMItems.lonsdaleite, 6, Items.phaseFabric, 6));
 		}};
 
 		lonsdaleiteWallLarge = new DRWall("lonsdaleiteWallLarge"){{
-      dRChance = 15;
-      dRPercentage = 45;
+      dRChance = 15f;
+      dRPercentage = 45f;
+		  health = 2800;
+			requirements(Category.defense, with(HMItems.lonsdaleite, 24, Items.phaseFabric, 24));
 		}};
 
 	}

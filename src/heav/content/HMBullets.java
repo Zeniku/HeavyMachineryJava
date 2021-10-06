@@ -17,12 +17,39 @@ import static mindustry.Vars.*;
 
 public class HMBullets implements ContentList{
 	public static BulletType
-	
+
+	//Swords 
+	standardSword, mediumSword, highSword,
+	//Overseer
 	standardOverseer, mediumOverseer, highOverseer;
 
 	@Override
 	public void load(){
-		standardOverseer = new OverseerBulletType(3f, 18){{
+		standardSword = new RandSpriteBulletType(3f, 18, "heavymachineryjava-swordBullet"){{
+			lifetime = 60f;
+			pierceCap = 10;
+			trailWidth = 4.5f;
+			critTrail = HMFx.critTrail;
+			spawnFx = HMFx.swordSpawnFx;
+		}};
+
+		mediumSword = new RandSpriteBulletType(3f, 29, "heavymachineryjava-swordBullet"){{
+			lifetime = 60f * 1.5f;
+			pierceCap = 10;
+			trailWidth = 4.5f;
+			critTrail = HMFx.critTrail;
+			spawnFx = HMFx.swordSpawnFx;
+		}};
+
+		highSword = new RandSpriteBulletType(3f, 40, "heavymachineryjava-swordBullet"){{
+			lifetime = 60f * 2.5f;
+			pierceCap = 10;
+			trailWidth = 4.5f;
+			critTrail = HMFx.critTrail;
+			spawnFx = HMFx.swordSpawnFx;
+		}};
+
+		standardOverseer = new OverseerBulletType(2.5f, 18){{
 			width = 7f;
       height = 9f;
 			homingPower = 0.08f;
@@ -30,6 +57,7 @@ public class HMBullets implements ContentList{
       ammoMultiplier = 5;
 			lifetime = 60f * 2f;
 		}};
+
     mediumOverseer = new OverseerBulletType(3f, 28){{
 			width = 9f;
       height = 11f;
@@ -38,7 +66,8 @@ public class HMBullets implements ContentList{
       ammoMultiplier = 5;
 			lifetime = 60f * 2f;
 		}};
-		highOverseer = new OverseerBulletType(3f, 49){{
+
+		highOverseer = new OverseerBulletType(4f, 49){{
 			width = 11f;
       height = 13f;
 			homingPower = 0.1f;

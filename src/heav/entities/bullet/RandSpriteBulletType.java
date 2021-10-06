@@ -16,8 +16,8 @@ import mindustry.world.*;
 import mindustry.content.*;
 
 public class RandSpriteBulletType extends BasicBulletType{
-	public int variants = 5;
-	public float critChance = 0.1f, critMultiplier = 3f;
+	public int variants = 5, trailLength = 15;
+	public float critChance = 0.25f, critMultiplier = 2f, trailWidth = 10f;
 	public Effect critTrail = Fx.none, spawnFx = Fx.none;
 
 	Seq<TextureRegion> frontRegions = Seq.with(), backRegions = Seq.with();
@@ -25,13 +25,16 @@ public class RandSpriteBulletType extends BasicBulletType{
 	public RandSpriteBulletType(float speed, float damage, String sprite){
 		super(speed, damage, sprite);
 		pierce = true; 
-		pierceBuilding = true; 
+		pierceBuilding = true;
 		ammoMultiplier = 1;  
 		frontColor = Color.white;
 		backColor = Pal.heal;
 		hitColor = Pal.heal;
-		trailLength = 10;
-		trailWidth = -1f;
+		shootEffect = Fx.none;
+		width = 8f * 3f;
+		height = 8f * 3f;
+		shrinkX = 0f;
+		shrinkY = 0f;
   }
 
 	public RandSpriteBulletType(float speed, float damage){

@@ -113,6 +113,19 @@ public class HMFx {
 
   healWave = new Effect(22, e -> {
     HMDraw.lineCircle(e.x, e.y, Pal.heal, e.fout() * 3, 4 + e.finpow() * (8 * 15));
+  }),
+
+  critTrail = new Effect(20, e -> {
+    Draw.color(Pal.heal);
+    Angles.randLenVectors(e.id, 3, 1 + e.fin() * 3, (x, y) -> {
+      Fill.square(e.x + x, e.y + y, e.fout() * 3.3f + 0.5f);
+    });
+  }),
+
+  swordSpawnFx = new Effect(20, e -> {
+    Draw.color(Pal.heal);
+    Lines.stroke(4 * (1 - e.finpow()));
+    Lines.circle(e.x, e.y, 8 * e.finpow());
   });
 
 	public static class LightningData{

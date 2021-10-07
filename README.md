@@ -1,6 +1,12 @@
 # Mindustry Java Mod Template
 A Java Mindustry mod template that works on Android and PC. The Kotlin version of this mod can be seen [here](https://github.com/Anuken/MindustryKotlinModTemplate).
 
+<details>
+  <summary>
+
+## **Building**
+</summary>
+  
 ## Building for Desktop Testing
 
 1. Install JDK **16**.
@@ -28,3 +34,4 @@ Building locally takes more time to set up, but shouldn't be a problem if you've
 
 *[1]* *On Linux/Mac it's `./gradlew`, but if you're using Linux I assume you know how to run executables properly anyway.*  
 *[2]: Yes, I know this is stupid. It's a Github UI limitation - while the jar itself is uploaded unzipped, there is currently no way to download it as a single file.*
+</details>

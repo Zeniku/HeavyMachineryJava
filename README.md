@@ -1,6 +1,9 @@
-# Mindustry Java Mod Template
-A Java Mindustry mod template that works on Android and PC. The Kotlin version of this mod can be seen [here](https://github.com/Anuken/MindustryKotlinModTemplate).
+# HeavyMachineryJava
+A Java Mindustry mod ported from js to java
 
+**Wiki:** https://github.com/Zeniku/HeavyMachinery-Wiki
+**JS:** https://github.com/Zeniku/HeavyMachinery
+---
 <details>
   <summary><h2>Building</h2></summary>
   

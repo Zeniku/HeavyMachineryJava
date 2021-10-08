@@ -2,10 +2,7 @@
 A Java Mindustry mod template that works on Android and PC. The Kotlin version of this mod can be seen [here](https://github.com/Anuken/MindustryKotlinModTemplate).
 
 <details>
-  <summary>
-
-## **Building**
-</summary>
+  <summary><h2>Building</h2></summary>
   
 ### Building for Desktop Testing
 

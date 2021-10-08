@@ -2,7 +2,9 @@
 A Java Mindustry mod ported from js to java
 
 **Wiki:** https://github.com/Zeniku/HeavyMachinery-Wiki
+
 **JS:** https://github.com/Zeniku/HeavyMachinery
+
 ---
 <details>
   <summary><h2>Building</h2></summary>

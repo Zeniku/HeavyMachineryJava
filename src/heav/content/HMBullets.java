@@ -17,38 +17,17 @@ import static mindustry.Vars.*;
 
 public class HMBullets implements ContentList{
 	public static BulletType
-
-	//Swords 
-	standardSword, mediumSword, highSword,
 	//Overseer
-	standardOverseer, mediumOverseer, highOverseer;
+	standardOverseer, mediumOverseer, highOverseer,
+	//Ground Spike
+	standardSpike, mediumSpike, highSpike,
+	//Orbiter
+	standardOrbiter, mediumOrbiter, highOrbiter,
+	//Swords 
+	standardSword, mediumSword, highSword;
 
 	@Override
 	public void load(){
-		standardSword = new RandSpriteBulletType(3f, 18, "heavymachineryjava-swordBullet"){{
-			lifetime = 60f;
-			pierceCap = 10;
-			trailWidth = 4.5f;
-			critTrail = HMFx.critTrail;
-			spawnFx = HMFx.swordSpawnFx;
-		}};
-
-		mediumSword = new RandSpriteBulletType(3f, 29, "heavymachineryjava-swordBullet"){{
-			lifetime = 60f * 1.5f;
-			pierceCap = 10;
-			trailWidth = 4.5f;
-			critTrail = HMFx.critTrail;
-			spawnFx = HMFx.swordSpawnFx;
-		}};
-
-		highSword = new RandSpriteBulletType(3f, 40, "heavymachineryjava-swordBullet"){{
-			lifetime = 60f * 2.5f;
-			pierceCap = 10;
-			trailWidth = 4.5f;
-			critTrail = HMFx.critTrail;
-			spawnFx = HMFx.swordSpawnFx;
-		}};
-
 		standardOverseer = new OverseerBulletType(2.5f, 18){{
 			width = 7f;
       height = 9f;
@@ -74,6 +53,51 @@ public class HMBullets implements ContentList{
       reloadMultiplier = 4f;
       ammoMultiplier = 7;
 			lifetime = 60f * 4f;
+		}};
+
+		standardOrbiter = new OrbiterBulletType(2f, 30){{
+			lifetime = 60f;
+			hitSound = Sounds.plasmaboom;
+			hitEffect = HMFx.orbExplode;
+			orbiter = standardOverseer;
+		}};
+
+		mediumOrbiter = new OrbiterBulletType(2f, 40){{
+			lifetime = 60f * 2f;
+			hitSound = Sounds.plasmaboom;
+			hitEffect = HMFx.orbExplode;
+			orbiter = standardOverseer;
+		}};
+
+		highOrbiter = new OrbiterBulletType(3f, 50){{
+			lifetime = 60f * 4f;
+			hitSound = Sounds.plasmaboom;
+			hitEffect = HMFx.orbExplode;
+			orbiter = standardOverseer;
+		}};
+		
+		standardSword = new RandSpriteBulletType(3f, 18, "heavymachineryjava-swordBullet"){{
+			lifetime = 60f;
+			pierceCap = 10;
+			trailWidth = 4.5f;
+			critTrail = HMFx.critTrail;
+			spawnFx = HMFx.swordSpawnFx;
+		}};
+
+		mediumSword = new RandSpriteBulletType(3f, 29, "heavymachineryjava-swordBullet"){{
+			lifetime = 60f * 1.5f;
+			pierceCap = 10;
+			trailWidth = 4.5f;
+			critTrail = HMFx.critTrail;
+			spawnFx = HMFx.swordSpawnFx;
+		}};
+
+		highSword = new RandSpriteBulletType(3f, 40, "heavymachineryjava-swordBullet"){{
+			lifetime = 60f * 2.5f;
+			pierceCap = 10;
+			trailWidth = 4.5f;
+			critTrail = HMFx.critTrail;
+			spawnFx = HMFx.swordSpawnFx;
 		}};
 	}
 }

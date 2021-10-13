@@ -126,6 +126,12 @@ public class HMFx {
     Draw.color(Pal.heal);
     Lines.stroke(4 * (1 - e.finpow()));
     Lines.circle(e.x, e.y, 8 * e.finpow());
+  }),
+ 
+  orbExplode = new Effect(45, e -> {
+    Draw.color(Pal.lancerLaser);
+    HMDraw.splashLine(e.x, e.y, 10f * e.fout(), 6f * e.fout(), e.id, 20, e.finpow() * (tilesize * 4f), e.rotation, 360f);
+    HMDraw.lineCircle(e.x, e.y, (tilesize * 3f) * e.finpow(), (tilesize * 5) * e.finpow());
   });
 
 	public static class LightningData{

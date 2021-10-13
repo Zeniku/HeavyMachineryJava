@@ -3,6 +3,7 @@ package heav;
 import arc.*;
 import arc.util.*;
 import mindustry.*;
+import mindustry.ctype.*;
 import mindustry.content.*;
 import mindustry.game.EventType.*;
 import mindustry.gen.*;
@@ -11,6 +12,11 @@ import mindustry.ui.dialogs.*;
 import heav.content.*;
 
 public class HeavyMachineryJava extends Mod{
+  private ContentList[] HMContent = { 
+    new HMBullets(),
+    new HMItems(),
+    new HMBlocks(),
+  };
 
   public HeavyMachineryJava(){
 
@@ -31,6 +37,8 @@ public class HeavyMachineryJava extends Mod{
 
   @Override
   public void loadContent(){
-    Log.info("Loading some example content.");
+    for(ContentList list : HMContent){
+      list.load();
+    }
   }
 }

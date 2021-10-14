@@ -13,6 +13,7 @@ A Java Mindustry mod ported from js to java
 - **JS:** https://github.com/Zeniku/HeavyMachinery
 </details>
 
+
 **Adds:**
 <blockquote>
 
@@ -44,7 +45,8 @@ Thanks you to [Shit Fabric](https://github.com/Duvent-mindustry) For the Awesome
 1. [My Discord Sever](https://discord.gg/bWBGyty)
 2. [Github's PullRequest](https://github.com/Zeniku/HeavyMachineryJava/pulls)
 
-##Maintainers 
+##Maintainers
+
 ### Owner
 Github: [Zeniku](https://github.com/Zeniku)<br />
 Discord: `Zeniku/HeavyMachinery#1408`

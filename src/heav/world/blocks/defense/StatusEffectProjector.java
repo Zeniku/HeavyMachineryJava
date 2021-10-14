@@ -71,6 +71,9 @@ public class StatusEffectProjector extends Block{
 			  eTime = Math.min(eTime + edelta(), reloadTime * 0.25f);
 			  aTime = Math.min(aTime + edelta(), reloadTime);
 			  if(aTime >= reloadTime){
+					wasHealed = false; 
+					appliedAlly = false;
+
 			    Units.nearby(team, x, y, range(), a -> {
 			      if(enableHealing){
 			        if(a.damaged()){
@@ -90,8 +93,16 @@ public class StatusEffectProjector extends Block{
 			      };
 			    });
 			    aTime = 0f;
+
+					if(wasHealed){
+						if(healEffect != Fx.none){
+							healEffect.at(x, y);
+						};
+					};
 			  }
 			  if(eTime >= reloadTime * 0.25f){
+					appliedEnemies = false;
+
 			    HMFunc.radiusEnemies(team, x, y, range(), e -> {
 			      e.apply(enemiesStatus, 60f);
 			      if(statusFxEnemies != Fx.none){
@@ -104,14 +115,9 @@ public class StatusEffectProjector extends Block{
 			    });
 			    eTime = 0f;
 			  };
+
 			  HMFunc.checkEffect(range(), this, appliedEnemies, enableEFxAura, statusFxEnemies, 5f);
 			  HMFunc.checkEffect(range(), this, appliedAlly, enableAFxAura, statusFxAlly, 5f);
-			  
-				if(wasHealed){
-				  if(healEffect != Fx.none){
-				    healEffect.at(x, y);
-				  };
-				};
 			};
     };
 		

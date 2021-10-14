@@ -30,7 +30,6 @@ public class HMBlocks implements ContentList{
 	//defense
 	statusEffectProjector, tesla;
   
-	
   @Override
 	public void load(){
 		statusEffectProjector = new StatusEffectProjector("statusEffectProjector"){{
@@ -39,6 +38,7 @@ public class HMBlocks implements ContentList{
       size = 3;
       health = 900;
       requirements(Category.effect, with(Items.titanium, 200, Items.plastanium, 100, Items.silicon, 200, Items.graphite, 300));
+			consumes.power(300f/60f);	
 		}};
 		
 		tesla = new Tesla("tesla"){{
@@ -46,6 +46,7 @@ public class HMBlocks implements ContentList{
       size = 3;
       health = 1500;
   	  requirements(Category.effect, with(Items.titanium, 150, Items.plastanium, 150, HMItems.lonsdaleite, 100, Items.silicon, 200, Items.graphite, 300));
+			consumes.power(300f/60f);
 		}};
 
 		lonsdaleiteWall = new DRWall("lonsdaleiteWall"){{

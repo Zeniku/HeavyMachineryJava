@@ -16,8 +16,8 @@ import mindustry.world.*;
 import mindustry.content.*;
 
 public class RandSpriteBulletType extends BasicBulletType{
-	public int variants = 5, trailLength = 15;
-	public float critChance = 0.25f, critMultiplier = 2f, trailWidth = 10f;
+	public int variants = 5;
+	public float critChance = 0.25f, critMultiplier = 2f;
 	public Effect critTrail = Fx.none, spawnFx = Fx.none;
 
 	Seq<TextureRegion> frontRegions = Seq.with(), backRegions = Seq.with();
@@ -26,6 +26,8 @@ public class RandSpriteBulletType extends BasicBulletType{
 		super(speed, damage, sprite);
 		pierce = true; 
 		pierceBuilding = true;
+		trailLength = 15;
+		trailWidth = 10f;
 		ammoMultiplier = 1;  
 		frontColor = Color.white;
 		backColor = Pal.heal;
@@ -60,9 +62,9 @@ public class RandSpriteBulletType extends BasicBulletType{
 		if(b.data == null){
 			int ind = frontRegions.indexOf(frontRegions.random());
 			if(Mathf.chance(critChance)){
-				b.data = new RandSpriteBulletData(new Trail(trailLength), frontRegions.get(ind), backRegions.get(ind), true);
+				b.data = new RandSpriteBulletData(frontRegions.get(ind), backRegions.get(ind), true);
 			}else{
-				b.data = new RandSpriteBulletData(new Trail(trailLength), frontRegions.get(ind), backRegions.get(ind), false);
+				b.data = new RandSpriteBulletData(frontRegions.get(ind), backRegions.get(ind), false);
 			}
 			if(((RandSpriteBulletData)b.data).crit) b.damage *= critMultiplier;
 		}
@@ -77,7 +79,6 @@ public class RandSpriteBulletType extends BasicBulletType{
 	public void update(Bullet b){
 		if(!(b.data instanceof RandSpriteBulletData dat)) return;
 		super.update(b);
-		dat.trail.update(b.x, b.y);
 		if(dat.crit && Mathf.chanceDelta(1)){
 			if(critTrail != null || critTrail != Fx.none){
 				critTrail.at(b);
@@ -88,6 +89,7 @@ public class RandSpriteBulletType extends BasicBulletType{
 	@Override
 	public void draw(Bullet b){
 		if(!(b.data instanceof RandSpriteBulletData dat)) return;
+		drawTrail(b);
 		float height = this.height * ((1 - shrinkY) + shrinkY * b.fout());
 		float width = this.width * ((1 - shrinkX) + shrinkX * b.fout());
 		float offset = -90 + (spin != 0 ? Mathf.randomSeed(b.id, 360) + b.time * spin : 0);
@@ -95,8 +97,6 @@ public class RandSpriteBulletType extends BasicBulletType{
 		Color mix = Tmp.c1.set(mixColorFrom).lerp(mixColorTo, b.fin());
 
 		Draw.mixcol(mix, mix.a);
-
-		dat.trail.draw(backColor, trailWidth * b.fout());
 
 		Draw.color(backColor);
 		Draw.rect(dat.spriteBack, b.x, b.y, width, height, b.rotation() + offset);
@@ -107,13 +107,11 @@ public class RandSpriteBulletType extends BasicBulletType{
 	};
 
 	public static class RandSpriteBulletData{
-		public Trail trail;
 		public TextureRegion sprite;
 		public TextureRegion spriteBack;
 		public boolean crit;
 
-		public RandSpriteBulletData(Trail trail, TextureRegion sprite, TextureRegion spriteBack, boolean crit){
-			this.trail = trail;
+		public RandSpriteBulletData(TextureRegion sprite, TextureRegion spriteBack, boolean crit){
 			this.sprite = sprite;
 			this.spriteBack = spriteBack;
 			this.crit = crit;

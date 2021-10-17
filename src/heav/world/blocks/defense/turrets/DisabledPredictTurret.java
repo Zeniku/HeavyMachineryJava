@@ -5,13 +5,8 @@ import arc.scene.ui.layout.*;
 import arc.struct.*;
 import arc.util.io.*;
 import mindustry.*;
-import mindustry.content.*;
-import mindustry.entities.bullet.*;
-import mindustry.game.EventType.*;
 import mindustry.gen.*;
-import mindustry.graphics.*;
 import mindustry.type.*;
-import mindustry.world.meta.*;
 import mindustry.world.blocks.defense.turrets.*;
 
 import static mindustry.Vars.*;

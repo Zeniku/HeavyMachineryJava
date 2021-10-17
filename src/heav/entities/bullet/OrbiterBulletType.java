@@ -16,15 +16,16 @@ public class OrbiterBulletType extends OverseerBulletType{
   public int orbiters = 4;
   public int orbiterTrailLength = 15;
   public float orbitSpeed = 1f;
-  public float orbitRadius = 3f;
-  public float orbiterST = 15f;
+  public float orbitRadius = 16f;
+  public float orbiterST = 25f;
   public float orbiterRadius = 4f;
-  public float orbiterTrailWidth = 10f;
+  public float orbiterTrailWidth = 2f;
   public Effect orbiterTrailEffect = Fx.none;
   public BulletType orbiter = Bullets.standardCopper;
-  
+
   public OrbiterBulletType(float speed, float damage, String sprite){
     super(speed, damage, sprite);
+    homeStop = true;
   };
   
   public OrbiterBulletType(float speed, float damage){
@@ -34,7 +35,14 @@ public class OrbiterBulletType extends OverseerBulletType{
   @Override
   public void init(Bullet b){
     if(b.data == null){
-      b.data = new OrbiterBulletData(trailLength, orbiters, orbiterTrailLength, b);
+      Seq<Trail> trails = new Seq();
+      FloatSeq oX = new FloatSeq(), oY = new FloatSeq();
+      for(int i = 0; i < orbiters; i++){
+        oX.add(b.x);
+        oY.add(b.y);
+        trails.add(new Trail(orbiterTrailLength));
+      };
+      b.data = new OrbiterBulletData(true, trails, oX, oY);
     }
     super.init(b);
   };
@@ -43,23 +51,21 @@ public class OrbiterBulletType extends OverseerBulletType{
   public void update(Bullet b){
     if(!(b.data instanceof OrbiterBulletData d)) return;
     float angle = (360f / orbiters);
-    FloatSeq oX = d.oX;
-    FloatSeq oY = d.oY;
     for(int i = 0; i < d.trails.size; i++){
-      oX.set(i, b.x + Angles.trnsx(angle * i + (orbitSpeed * Time.time), orbitRadius));
-      oY.set(i, b.y + Angles.trnsy(angle * i + (orbitSpeed * Time.time), orbitRadius));
+      d.oX.set(i, b.x + Angles.trnsx(angle * i + (orbitSpeed * Time.time), orbitRadius));
+      d.oY.set(i, b.y + Angles.trnsy(angle * i + (orbitSpeed * Time.time), orbitRadius));
       if(orbiterTrailEffect != Fx.none && orbiterTrailEffect != null){
         if(Mathf.chanceDelta(1)){
-          orbiterTrailEffect.at(oX.get(i), oY.get(i), trailParam, trailColor);
+          orbiterTrailEffect.at(d.oX.get(i), d.oY.get(i), trailParam, trailColor);
         };
       }else{
-        d.trails.get(i).update(oX.get(i), oY.get(i));
+        d.trails.get(i).update(d.oX.get(i), d.oY.get(i));
       }
     };
     
     if(b.timer(0, orbiterST)){
       for(int i = 0; i < d.trails.size; i++){
-        orbiter.create(b, oX.get(i), oY.get(i), b.rotation());
+        orbiter.create(b, d.oX.get(i), d.oY.get(i), b.rotation());
       };
     };
     super.update(b);
@@ -79,20 +85,14 @@ public class OrbiterBulletType extends OverseerBulletType{
   }
   
   public static class OrbiterBulletData extends OverseerBulletType.OverseerBulletData{
-    public Seq<Trail> trails = new Seq();
-    public FloatSeq oX = new FloatSeq(), oY = new FloatSeq();
+    public Seq<Trail> trails;
+    public FloatSeq oX, oY;
     
-    public OrbiterBulletData(Trail mainTrail, int trails, int trailLength, float x, float y){
-      super(mainTrail);
-      for(int i = 0; i < trails; i++){
-        this.trails.add(new Trail(trailLength));
-        this.oX.add(x);
-        this.oY.add(y);
-      }
-    }
-    
-    public OrbiterBulletData(int mainTrailLength, int trails, int trailLength, Position pos){
-      this(new Trail(mainTrailLength), trails, trailLength, pos.getX(), pos.getY());
+    public OrbiterBulletData(boolean home, Seq trails, FloatSeq oX, FloatSeq oY){
+      super(home);
+      this.oX = oX;
+      this.oY = oY;
+      this.trails = trails;
     }
   }
 }

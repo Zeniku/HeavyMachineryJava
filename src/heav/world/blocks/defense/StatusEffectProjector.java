@@ -21,9 +21,9 @@ import static heav.util.HMDraw.*;
 public class StatusEffectProjector extends Block{
 	
 	public Color starColor = Pal.lightPyraFlame;
-	public float reloadTime = 60f;
+	public float reloadTime = 60f * 3.5f;
   public float range = 160f;
-  public float healPercent = 2f;
+  public float healPercent = 5f;
   public float damage = 20f;
   public StatusEffect allyStatus = StatusEffects.none;
   public StatusEffect enemiesStatus = StatusEffects.burning;
@@ -52,7 +52,7 @@ public class StatusEffectProjector extends Block{
   public void setStats(){
     super.setStats();
     stats.add(Stat.range, range);
-    stats.add(Stat.reload, reloadTime);
+    stats.add(Stat.reload, reloadTime / 60f, StatUnit.perSecond);
   };
 	
   public class StatusEffectProjectorBuild extends Building implements Ranged{
@@ -67,7 +67,7 @@ public class StatusEffectProjector extends Block{
     
     @Override
     public void updateTile(){
-      if(consValid()){		
+      if(consValid()){
 			  eTime = Math.min(eTime + edelta(), reloadTime * 0.25f);
 			  aTime = Math.min(aTime + edelta(), reloadTime);
 			  if(aTime >= reloadTime){
@@ -96,7 +96,7 @@ public class StatusEffectProjector extends Block{
 
 					if(wasHealed){
 						if(healEffect != Fx.none){
-							healEffect.at(x, y);
+							healEffect.at(x, y, range, Pal.heal);
 						};
 					};
 			  }

@@ -31,39 +31,42 @@ public class HMBullets implements ContentList{
 		standardOverseer = new OverseerBulletType(2.5f, 18){{
 			width = 7f;
       height = 9f;
-			homingPower = 0.08f;
       reloadMultiplier = 1.5f;
       ammoMultiplier = 5;
 			lifetime = 60f * 2f;
+      trailWidth = 2f;
+      trailLength = 10;
 		}};
 
     mediumOverseer = new OverseerBulletType(3f, 28){{
 			width = 9f;
       height = 11f;
-			homingPower = 0.08f;
       reloadMultiplier = 2f;
       ammoMultiplier = 5;
 			lifetime = 60f * 2f;
+      trailWidth = 3f;
+      trailLength = 10;
 		}};
 
 		highOverseer = new OverseerBulletType(4f, 49){{
 			width = 11f;
       height = 13f;
-			homingPower = 0.1f;
       reloadMultiplier = 4f;
       ammoMultiplier = 7;
 			lifetime = 60f * 4f;
+      trailWidth = 2f;
+      trailLength = 15;
 		}};
 
 		standardOrbiter = new OrbiterBulletType(2f, 30){{
-			lifetime = 60f;
+			lifetime = 60f * 2f;
 			hitSound = Sounds.plasmaboom;
 			hitEffect = HMFx.orbExplode;
 			orbiter = standardOverseer;
 		}};
 
 		mediumOrbiter = new OrbiterBulletType(2f, 40){{
-			lifetime = 60f * 2f;
+			lifetime = 60f * 3f;
 			hitSound = Sounds.plasmaboom;
 			hitEffect = HMFx.orbExplode;
 			orbiter = standardOverseer;

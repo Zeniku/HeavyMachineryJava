@@ -26,7 +26,7 @@ public class FractalTurret extends DisabledPredictTurret{
     
     @Override
     protected void bullet(BulletType type, float angle){
-      Vec2 tp = targetPos;
+      var tp = (Vec2)targetPos;
       
       if(Mathf.dst(x + tr.x, y + tr.y, tp.x, tp.y) > range){
           Tmp.v1.set(tp).sub(x, y).clamp(-range, range).add(x, y);

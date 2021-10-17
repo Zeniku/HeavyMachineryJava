@@ -112,7 +112,8 @@ public class HMFx {
   }),
 
   healWave = new Effect(22, e -> {
-    HMDraw.lineCircle(e.x, e.y, Pal.heal, e.fout() * 3, 4 + e.finpow() * (8 * 15));
+    //e.rotation is size
+    HMDraw.lineCircle(e.x, e.y, e.color, e.fout() * 3, 4 + e.finpow() * e.rotation);
   }),
 
   critTrail = new Effect(20, e -> {

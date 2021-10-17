@@ -57,6 +57,7 @@ public class HMBlocks implements ContentList{
 		}};
 
 		lonsdaleiteWallLarge = new DRWall("lonsdaleiteWallLarge"){{
+			size = 2;
       dRChance = 15f;
       dRPercentage = 45f;
 		  health = 2800;

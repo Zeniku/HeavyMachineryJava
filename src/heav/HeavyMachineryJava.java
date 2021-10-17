@@ -12,7 +12,7 @@ import mindustry.ui.dialogs.*;
 import heav.content.*;
 
 public class HeavyMachineryJava extends Mod{
-  private ContentList[] HMContent = { 
+  public final ContentList[] HMContent = { 
     new HMBullets(),
     new HMItems(),
     new HMBlocks(),

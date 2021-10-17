@@ -21,8 +21,8 @@ import static mindustry.Vars.*;
 import heav.content.HMFx.LightningData;
 
 public class Tesla extends Block{
-	public float range = 120f;
-  public float reloadTime = 20f;
+	public float range = tilesize * 10f;
+  public float reloadTime = 40f;
   public float damage = 20f;
 	public int lightningCount = 3;
   public int lightningLength = 10;
@@ -37,7 +37,20 @@ public class Tesla extends Block{
     group = BlockGroup.projectors;
     hasPower = true;
 	}
-		
+
+  @Override
+	public void drawPlace(int x, int y, int rotation, boolean valid){
+		super.drawPlace(x, y, rotation, valid);
+	  Drawf.dashCircle(x * tilesize, y * tilesize, range, lightningColor);
+	};
+
+	@Override
+  public void setStats(){
+    super.setStats();
+    stats.add(Stat.range, range);
+    stats.add(Stat.reload, reloadTime / 60f, StatUnit.perSecond);
+  };
+
 	public class TeslaBuild extends Building implements Ranged{
 		protected float rTime = 0f;
 		

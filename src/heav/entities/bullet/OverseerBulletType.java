@@ -2,12 +2,12 @@ package heav.entities.bullet;
 
 import arc.math.*;
 import arc.graphics.*;
+import arc.graphics.g2d.*;
 import arc.util.*;
 import mindustry.entities.bullet.*;
 import mindustry.gen.*;
 import mindustry.content.*;
 import mindustry.graphics.*;
-import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.defense.turrets.*;
 
 public class OverseerBulletType extends BasicBulletType{
@@ -20,6 +20,7 @@ public class OverseerBulletType extends BasicBulletType{
     trailEffect = Fx.none;
     trailLength = 15;
     trailWidth = -1f;
+    trailColor = Pal.lancerLaser;
     pierce = true;
     pierceCap = 10;
     homingPower = 10f;
@@ -88,6 +89,17 @@ public class OverseerBulletType extends BasicBulletType{
       if(Mathf.chanceDelta(1)){
         trailEffect.at(b.x, b.y, trailParam, trailColor);
       };
+    }
+  }
+
+  @Override
+  public void drawTrail(Bullet b){
+    if(trailLength > 0 && b.trail != null){
+      //draw below bullets? TODO
+      float z = Draw.z();
+      Draw.z(z - 0.0001f);
+      b.trail.draw(trailColor, trailWidth);
+      Draw.z(z);
     }
   }
   

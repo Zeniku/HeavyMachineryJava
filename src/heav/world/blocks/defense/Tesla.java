@@ -4,9 +4,7 @@ import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.util.*;
-import arc.util.io.*;
 import mindustry.content.*;
-import mindustry.type.*;
 import mindustry.entities.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
@@ -21,7 +19,7 @@ import static mindustry.Vars.*;
 import heav.content.HMFx.LightningData;
 
 public class Tesla extends Block{
-	public float range = tilesize * 10f;
+	public float range = tilesize * 15f;
   public float reloadTime = 40f;
   public float damage = 20f;
 	public int lightningCount = 3;

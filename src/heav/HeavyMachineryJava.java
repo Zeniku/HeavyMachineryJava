@@ -2,17 +2,15 @@ package heav;
 
 import arc.*;
 import arc.util.*;
-import mindustry.*;
 import mindustry.ctype.*;
-import mindustry.content.*;
 import mindustry.game.EventType.*;
-import mindustry.gen.*;
 import mindustry.mod.*;
 import mindustry.ui.dialogs.*;
 import heav.content.*;
+import static mindustry.Vars.*;
 
 public class HeavyMachineryJava extends Mod{
-  public final ContentList[] HMContent = { 
+  public final ContentList[] HMContent = {
     new HMBullets(),
     new HMItems(),
     new HMBlocks(),
@@ -21,7 +19,7 @@ public class HeavyMachineryJava extends Mod{
   public HeavyMachineryJava(){
 
     //listen for game load event
-    Events.on(ClientLoadEvent.class, e -> {
+    Events.on(ClientLoadEvent.class, e -> { 
       //show dialog upon startup
       Time.runTask(10f, () -> {
         
@@ -33,6 +31,13 @@ public class HeavyMachineryJava extends Mod{
             dialog.show();
       });
     });
+  }
+
+  @Override
+  public void init(){
+    if(!headless){
+      enableConsole = true;
+    }
   }
 
   @Override

@@ -1,20 +1,9 @@
 package heav.world.blocks.defense.turrets;
 
-import arc.*;
 import arc.util.*;
 import arc.math.*;
 import arc.math.geom.*;
-import arc.scene.ui.layout.*;
-import arc.struct.*;
-import arc.util.io.*;
-import mindustry.*;
-import mindustry.content.*;
 import mindustry.entities.bullet.*;
-import mindustry.gen.*;
-import mindustry.type.*;
-import mindustry.world.blocks.defense.turrets.*;
-
-import static mindustry.Vars.*;
 
 public class FractalTurret extends DisabledPredictTurret{
   

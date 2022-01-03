@@ -1,21 +1,11 @@
 package heav.content;
 
-import arc.graphics.*;
-import arc.math.*;
-import arc.struct.*;
-import mindustry.*;
 import mindustry.content.*;
 import mindustry.ctype.*;
-import mindustry.entities.bullet.*;
-import mindustry.gen.*;
-import mindustry.graphics.*;
+import mindustry.game.*;
 import mindustry.type.*;
 import mindustry.world.*;
-import mindustry.world.blocks.*;
-import mindustry.world.blocks.production.*;
-import mindustry.world.consumers.*;
-import mindustry.world.draw.*;
-import mindustry.world.meta.*;
+import mindustry.world.blocks.storage.*;
 import heav.world.blocks.defense.*;
 import heav.world.blocks.defense.turrets.*;
 
@@ -23,6 +13,8 @@ import static mindustry.type.ItemStack.*;
 
 public class HMBlocks implements ContentList{
   public static Block
+	//storage
+	miniCore,
 	//walls
 	lonsdaleiteWall, lonsdaleiteWallLarge,
 	//turrets
@@ -63,5 +55,22 @@ public class HMBlocks implements ContentList{
 		  health = 2800;
 			requirements(Category.defense, with(HMItems.lonsdaleite, 24, Items.phaseFabric, 24));
 		}};
+
+		miniCore = new CoreBlock("miniCore"){
+			{
+				alwaysUnlocked = false;
+				unitType = UnitTypes.alpha;
+				health = 1200;
+				itemCapacity = 1500;
+				size = 2;
+				unitCapModifier = 0;
+				requirements(Category.effect, with(Items.lead, 1500, Items.silicon, 2000, Items.copper, 1500, Items.titanium, 1500));
+			};
+
+			@Override
+			public boolean canPlaceOn(Tile tile, Team team, int rotation){
+				return true;
+			}
+		};
 	}
 }

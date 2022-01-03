@@ -1,19 +1,10 @@
 package heav.content;
 
-import arc.graphics.*;
-import arc.graphics.g2d.*;
-import arc.math.*;
-import arc.util.*;
 import mindustry.ctype.*;
-import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
-import mindustry.io.*;
-import mindustry.world.*;
 import heav.entities.bullet.*;
-
-import static mindustry.Vars.*;
 
 public class HMBullets implements ContentList{
 	public static BulletType
@@ -36,6 +27,7 @@ public class HMBullets implements ContentList{
 			lifetime = 60f * 2f;
       trailWidth = 2f;
       trailLength = 10;
+			trailColor = Pal.lancerLaser;
 		}};
 
     mediumOverseer = new OverseerBulletType(3f, 28){{
@@ -46,6 +38,7 @@ public class HMBullets implements ContentList{
 			lifetime = 60f * 2f;
       trailWidth = 3f;
       trailLength = 10;
+			trailColor = Pal.lancerLaser;
 		}};
 
 		highOverseer = new OverseerBulletType(4f, 49){{
@@ -56,27 +49,37 @@ public class HMBullets implements ContentList{
 			lifetime = 60f * 4f;
       trailWidth = 2f;
       trailLength = 15;
+			trailColor = Pal.lancerLaser;
 		}};
 
 		standardOrbiter = new OrbiterBulletType(2f, 30){{
+			width = 7f;
+      height = 9f;
 			lifetime = 60f * 2f;
 			hitSound = Sounds.plasmaboom;
 			hitEffect = HMFx.orbExplode;
 			orbiter = standardOverseer;
+			trailColor = Pal.lancerLaser;
 		}};
 
 		mediumOrbiter = new OrbiterBulletType(2f, 40){{
+			width = 9f;
+      height = 11f;
 			lifetime = 60f * 3f;
 			hitSound = Sounds.plasmaboom;
 			hitEffect = HMFx.orbExplode;
 			orbiter = standardOverseer;
+			trailColor = Pal.lancerLaser;
 		}};
 
 		highOrbiter = new OrbiterBulletType(3f, 50){{
+			width = 11f;
+      height = 13f;
 			lifetime = 60f * 4f;
 			hitSound = Sounds.plasmaboom;
 			hitEffect = HMFx.orbExplode;
 			orbiter = standardOverseer;
+			trailColor = Pal.lancerLaser;
 		}};
 		
 		standardSword = new RandSpriteBulletType(3f, 18, "heavymachineryjava-swordBullet"){{
@@ -85,6 +88,7 @@ public class HMBullets implements ContentList{
 			trailWidth = 4.5f;
 			critTrail = HMFx.critTrail;
 			spawnFx = HMFx.swordSpawnFx;
+			trailColor = Pal.heal;
 		}};
 
 		mediumSword = new RandSpriteBulletType(3f, 29, "heavymachineryjava-swordBullet"){{
@@ -93,6 +97,7 @@ public class HMBullets implements ContentList{
 			trailWidth = 4.5f;
 			critTrail = HMFx.critTrail;
 			spawnFx = HMFx.swordSpawnFx;
+			trailColor = Pal.heal;
 		}};
 
 		highSword = new RandSpriteBulletType(3f, 40, "heavymachineryjava-swordBullet"){{
@@ -101,6 +106,7 @@ public class HMBullets implements ContentList{
 			trailWidth = 4.5f;
 			critTrail = HMFx.critTrail;
 			spawnFx = HMFx.swordSpawnFx;
+			trailColor = Pal.heal;
 		}};
 	}
 }

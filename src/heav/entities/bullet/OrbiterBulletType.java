@@ -1,10 +1,8 @@
 package heav.entities.bullet;
 
 import arc.math.*;
-import arc.math.geom.*;
 import arc.struct.*;
 import arc.util.*;
-import arc.graphics.*;
 import arc.graphics.g2d.*;
 import mindustry.graphics.*;
 import mindustry.gen.*;
@@ -70,7 +68,14 @@ public class OrbiterBulletType extends OverseerBulletType{
     };
     super.update(b);
   };
-  
+
+  @Override
+  public void removed(Bullet b){
+    if(trailLength > 0 && b.trail != null && b.trail.size() > 0){
+      Fx.trailFade.at(b.x, b.y, trailWidth, trailColor, b.trail.copy());
+    }
+  }
+
   @Override
   public void draw(Bullet b){
     if(!(b.data instanceof OrbiterBulletData d)) return;

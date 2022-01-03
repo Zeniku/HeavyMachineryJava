@@ -12,8 +12,6 @@ import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
-import mindustry.world.*;
-import mindustry.content.*;
 
 public class RandSpriteBulletType extends BasicBulletType{
 	public int variants = 5;
@@ -28,6 +26,7 @@ public class RandSpriteBulletType extends BasicBulletType{
 		pierceBuilding = true;
 		trailLength = 15;
 		trailWidth = 10f;
+		trailColor = Pal.heal;
 		ammoMultiplier = 1;  
 		frontColor = Color.white;
 		backColor = Pal.heal;
@@ -105,6 +104,24 @@ public class RandSpriteBulletType extends BasicBulletType{
 
 		Draw.reset();
 	};
+
+  @Override
+  public void drawTrail(Bullet b){
+    if(trailLength > 0 && b.trail != null){
+      //draw below bullets? TODO
+      float z = Draw.z();
+      Draw.z(z - 0.0001f);
+      b.trail.draw(trailColor, trailWidth);
+      Draw.z(z);
+    }
+  } 
+
+	@Override
+	public void removed(Bullet b){
+		if(trailLength > 0 && b.trail != null && b.trail.size() > 0){
+			Fx.trailFade.at(b.x, b.y, trailWidth, trailColor, b.trail.copy());
+		}
+	}
 
 	public static class RandSpriteBulletData{
 		public TextureRegion sprite;

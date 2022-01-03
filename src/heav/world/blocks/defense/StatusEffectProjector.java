@@ -4,7 +4,6 @@ import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.util.*;
-import arc.util.io.*;
 import mindustry.content.*;
 import mindustry.type.*;
 import mindustry.entities.*;
@@ -16,7 +15,6 @@ import mindustry.world.meta.*;
 import heav.util.*;
 
 import static mindustry.Vars.*;
-import static heav.util.HMDraw.*;
 
 public class StatusEffectProjector extends Block{
 	

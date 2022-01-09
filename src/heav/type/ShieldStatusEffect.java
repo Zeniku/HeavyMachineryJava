@@ -1,22 +1,9 @@
 package heav.type;
 
-import arc.*;
-import arc.func.*;
-import arc.graphics.g2d.*;
-import arc.math.*;
-import arc.scene.ui.*;
-import arc.scene.ui.layout.*;
-import arc.struct.*;
-import arc.util.*;
-import mindustry.*;
 import mindustry.gen.*;
 import mindustry.type.*;
-import mindustry.ui.*;
-import mindustry.world.*;
-import mindustry.type.*;
+import mindustry.world.meta.*;
 import heav.world.meta.*;
-
-import static mindustry.Vars.*;
 
 public class ShieldStatusEffect extends StatusEffect{
   public float shieldAmount = 20f;
@@ -29,7 +16,7 @@ public class ShieldStatusEffect extends StatusEffect{
   @Override
   public void setStats(){
     super.setStats();
-    stats.add(Stats.shieldHealth, HMStatValues.shieldListVal(this));
+    stats.add(Stat.shieldHealth, HMStatValues.shieldListVal(this));
   }
 
   @Override

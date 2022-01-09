@@ -10,7 +10,7 @@ import heav.content.*;
 import static mindustry.Vars.*;
 
 public class HeavyMachineryJava extends Mod{
-  public final ContentList[] HMContent = {
+  private final ContentList[] HMContent = {
     new HMBullets(),
     new HMItems(),
     new HMBlocks(),

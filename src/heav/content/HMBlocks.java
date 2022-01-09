@@ -18,7 +18,7 @@ public class HMBlocks implements ContentList{
 	//walls
 	lonsdaleiteWall, lonsdaleiteWallLarge,
 	//turrets
-	
+	heavenlyStrike,	praefector,
 	//defense
 	statusEffectProjector, tesla;
   
@@ -39,6 +39,25 @@ public class HMBlocks implements ContentList{
       health = 1500;
   	  requirements(Category.effect, with(Items.titanium, 150, Items.plastanium, 150, HMItems.lonsdaleite, 100, Items.silicon, 200, Items.graphite, 300));
 			consumes.power(300f/60f);
+		}};
+		
+		heavenlyStrike = new FractalTurret("heavenlyStrike"){{
+			health = 1540;
+      recoilAmount = 0;
+      shots = 3;
+		  size = 4;
+			reloadTime = 20f;
+			requirements(Category.turret, with(HMItems.lonsdaleite, 150, Items.titanium, 200, Items.lead, 280));
+		}};
+		
+		praefector = new DisabledPredictTurret("praefector"){{
+			health = 1280;
+      recoilAmount = 2;
+			alternate = true;
+		  size = 4;
+			reloadTime = 15f;
+			shots = 2;
+			requirements(Category.turret, with(HMItems.lonsdaleite, 100, Items.titanium, 150, Items.lead, 180));
 		}};
 
 		lonsdaleiteWall = new DRWall("lonsdaleiteWall"){{

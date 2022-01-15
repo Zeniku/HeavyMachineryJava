@@ -19,11 +19,11 @@ A Java Mindustry mod ported from js to java
 
 *Units: 11*
  - Melee: 5
- - PurplebAir: 3
+ - PurpleAir: 5
  - Overseer: 3
 
 *Blocks: 5*
- - Turrets: 1
+ - Turrets: 2
  - Effects: 3
  - Production: 1
 </blockquote>

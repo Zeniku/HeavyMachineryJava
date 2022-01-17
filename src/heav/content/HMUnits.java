@@ -6,7 +6,7 @@ import mindustry.gen.*;
 import mindustry.ctype.*;
 import mindustry.entities.bullet.*;
 
-public class HMUnits implements ContentList{
+public class HMUnits{
 	public static UnitType
 	//Purple Air
 	aranea, traho, spiculum, interitus, eterius,
@@ -15,8 +15,7 @@ public class HMUnits implements ContentList{
 	//Melee
 	pugione, mucro, tragula, lucius, machaera;
 
-	@Override
-	public void load(){
+	public static void load(){
 		aranea = new UnitType("aranea"){{
 			speed = 1.5f;
 			hitSize = 8;

@@ -6,7 +6,7 @@ import mindustry.gen.*;
 import mindustry.graphics.*;
 import heav.entities.bullet.*;
 
-public class HMBullets implements ContentList{
+public class HMBullets {
 	public static BulletType
 	//Overseer
 	standardOverseer, mediumOverseer, highOverseer,
@@ -17,8 +17,7 @@ public class HMBullets implements ContentList{
 	//Swords 
 	standardSword, mediumSword, highSword;
 
-	@Override
-	public void load(){
+	public static void load(){
 		standardOverseer = new OverseerBulletType(2.5f, 18){{
 			width = 7f;
       height = 9f;

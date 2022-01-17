@@ -10,11 +10,6 @@ import heav.content.*;
 import static mindustry.Vars.*;
 
 public class HeavyMachineryJava extends Mod{
-  private final ContentList[] HMContent = {
-    new HMBullets(),
-    new HMItems(),
-    new HMBlocks(),
-  };
 
   public HeavyMachineryJava(){
 
@@ -42,8 +37,9 @@ public class HeavyMachineryJava extends Mod{
 
   @Override
   public void loadContent(){
-    for(ContentList list : HMContent){
-      list.load();
-    }
+    HMBullets.load();
+    HMItems.load();
+    HMUnits.load();
+    HMBlocks.load();
   }
 }

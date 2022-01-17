@@ -11,7 +11,7 @@ import heav.world.blocks.defense.turrets.*;
 
 import static mindustry.type.ItemStack.*;
 
-public class HMBlocks implements ContentList{
+public class HMBlocks {
   public static Block
 	//storage
 	miniCore,
@@ -22,8 +22,7 @@ public class HMBlocks implements ContentList{
 	//defense
 	statusEffectProjector, tesla;
   
-  @Override
-	public void load(){
+	public static void load(){
 		statusEffectProjector = new StatusEffectProjector("statusEffectProjector"){{
 			statusFxEnemies = HMFx.flameBurst;
 			healEffect = HMFx.healWave;

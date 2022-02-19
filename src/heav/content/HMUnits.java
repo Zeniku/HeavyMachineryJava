@@ -9,6 +9,7 @@ import mindustry.type.*;
 import mindustry.graphics.*;
 import heav.entities.bullet.*;
 import heav.entities.abilities.*;
+import heav.ai.types.*;
 
 public class HMUnits{
 	public static UnitType
@@ -323,6 +324,102 @@ public class HMUnits{
 						statusDuration = 60 * 7;
 						fragCone = 15;
 					}};
+				}}
+			);
+		}};
+
+		princeps = new UnitType("princeps"){{
+			defaultController = DisabledPredictAi::new;
+			constructor = MechUnit::create;
+			speed = 0.8f;
+			hitSize = 9;
+			health = 250;
+			maxRange = 140;
+			range = 140;
+			targetAir = true;
+			armor = 3;
+			weapons.add(
+				new Weapon("heavymachineryjava-princepsWeapon"){{
+					x = 5;
+					y = 0;
+					top = false;
+					reload = 15;
+					ejectEffect = Fx.lightningShoot;
+					shootSound = Sounds.laser;
+					bullet = HMBullets.standardOverseer;
+				}}
+			);
+		}};
+
+		procurator = new UnitType("procurator"){{
+			defaultController = DisabledPredictAi::new;
+			constructor = MechUnit::create;
+			speed = 0.6f;
+			hitSize = 13.375f;
+			health = 500;
+			maxRange = 300;
+			range = 300;
+			targetAir = true;
+			armor = 5f;
+
+			weapons.add(
+				new Weapon("heavymachineryjava-procuratorWeapon"){{
+					x = 25 / 4;
+					y = 3 / 4;
+					top = false;
+					reload = 25;
+					ejectEffect = Fx.lightningShoot;
+					shootSound = Sounds.laser;
+					bullet = HMBullets.mediumOverseer;
+				}}
+			);
+		}};
+
+		inductor = new UnitType("inductor"){{
+			defaultController = DisabledPredictAi::new;
+			constructor = MechUnit::create;
+			health = 600;
+			speed = 0.56f;
+			hitSize = 17.625f;
+			drag = 0.4f;
+			range = 350;
+			maxRange = 350;
+			singleTarget = true;
+			legCount = 6;
+			legLength = 9;
+			legTrns = 0.6f;
+			legMoveSpace = 1.4f;
+			hovering = true;
+			armor = 6;
+			allowLegStep = true;
+			visualElevation = 0.2f;
+			groundLayer = 74;
+			visualElevation = 0.02f;
+
+			weapons.add(
+				new Weapon("heavymachineryjava-inductorShotgun"){{
+					x = 36 / 4;
+					y = 1 / 4;
+					reload = 60;
+					top = false;
+					ejectEffect = Fx.lightningShoot;
+					shootSound = Sounds.laser;
+					shots = 4;
+					inaccuracy = 15;
+					bullet = HMBullets.mediumOverseer;
+				}},
+
+				new Weapon("heavymachineryjava-inductorArtillery"){{
+					x = 0;
+					y = -21 / 4;
+					reload = 190;
+					mirror = false;
+					rotate = true;
+					rotateSpeed = 3.5f;
+					ejectEffect = Fx.lightningShoot;
+					shootSound = Sounds.laser;
+					bullet = HMBullets.mediumOrbiter;
+					recoil = 4;
 				}}
 			);
 		}};

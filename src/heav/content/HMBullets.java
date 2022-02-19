@@ -1,6 +1,5 @@
 package heav.content;
 
-import mindustry.ctype.*;
 import mindustry.entities.bullet.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;

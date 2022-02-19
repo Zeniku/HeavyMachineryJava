@@ -1,7 +1,6 @@
 package heav.content;
 
 import arc.graphics.*;
-import mindustry.ctype.*;
 import mindustry.type.*;
 
 public class HMItems {

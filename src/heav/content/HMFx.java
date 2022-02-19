@@ -127,6 +127,29 @@ public class HMFx {
     Draw.color(Pal.lancerLaser);
     HMDraw.splashLine(e.x, e.y, 10f * e.fout(), 6f * e.fout(), e.id, 20, e.finpow() * (tilesize * 4f), e.rotation, 360f);
     HMDraw.lineCircle(e.x, e.y, (tilesize * 3f) * e.finpow(), (tilesize * 5) * e.finpow());
+  }),
+
+  boom = new Effect(30, e -> {
+    HMDraw.splashCircle(e.x, e.y, 5 * e.fslope(), Pal.sapBullet, Pal.sapBulletBack, e.fin(), e.id, 15, e.finpow() * (8 * 5), e.rotation, 360);
+    HMDraw.lineCircle(e.x, e.y, Pal.sapBullet, Pal.sapBulletBack, e.fin(), 4 * e.fout(), (4 * 8) * e.fin());
+    HMDraw.splashLine(e.x, e.y, Pal.sapBullet, Color.valueOf("b28768ff"), e.fin(), 4 * e.fout(), 6 * e.fout(), e.id, 15, e.finpow() * (8 * 5), e.rotation, 360);
+  }),
+
+  bigBoom = new Effect(30, e -> {
+    HMDraw.splashCircle(e.x, e.y, 5 * e.fslope(), Pal.sapBullet, Pal.sapBulletBack, e.fin(), e.id, 20, e.finpow() * (8 * 10), e.rotation, 360);
+    HMDraw.lineCircle(e.x, e.y, Pal.sapBullet, Pal.sapBulletBack, e.fin(), 4 * e.fout(), (6 * 7) * e.finpow());
+    HMDraw.lineCircle(e.x, e.y, Pal.sapBullet, Pal.sapBulletBack, e.fin(), 6 * e.fout(), (6 * 11) * e.finpow());
+    HMDraw.splashLine(e.x, e.y, Pal.sapBullet, Color.valueOf("b28768ff"), e.fin(), 4 * e.fout(), 6 * e.fout(), e.id, 20, e.finpow() * (8 * 10), e.rotation, 360);
+  }),
+
+  laserCharge = new Effect(80, e -> {
+    HMDraw.splashCircle(e.x, e.y, 5 * e.fslope(), Pal.sapBullet, Pal.sapBulletBack, e.fin(), e.id, 20, (1 - e.finpow()) * (8 * 6), e.rotation, 360);
+    HMDraw.lineCircle(e.x, e.y, Pal.sapBullet, Pal.sapBulletBack, e.fin(), 4 * e.fin(), (6 * 7) * (1 - e.finpow()));
+    HMDraw.lineCircle(e.x, e.y, Pal.sapBullet, Pal.sapBulletBack, e.fin(), 4 * e.fin(), (6 * 11) * (1 - e.finpow()));
+    color(Pal.sapBullet);
+    Fill.circle(e.x, e.y, 10 * e.fin());
+    color(Color.white);
+    Fill.circle(e.x, e.y, 8 * e.fin());
   });
 
 	public static class LightningData{

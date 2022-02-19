@@ -1,7 +1,6 @@
 package heav.content;
 
 import mindustry.content.*;
-import mindustry.ctype.*;
 import mindustry.game.*;
 import mindustry.type.*;
 import mindustry.world.*;

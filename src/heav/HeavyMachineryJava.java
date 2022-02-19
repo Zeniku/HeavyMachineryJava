@@ -2,7 +2,6 @@ package heav;
 
 import arc.*;
 import arc.util.*;
-import mindustry.ctype.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
 import mindustry.ui.dialogs.*;

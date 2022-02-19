@@ -25,6 +25,14 @@ public class HMDraw {
       Drawf.tri(x, y, size, (size * lengthMultiplier), i * step + rotation);
     };
   }
+	public static void splashLine(float x, float y, Color colorFrom, Color colorTo, float inOut, float thickness, float length, long id, int amount, float distance, float rotation, float cone){
+    color(colorFrom, colorTo, inOut);
+    splashLine(x, y, thickness, length, id, amount, distance, rotation, cone);
+  }
+	public static void splashLine(float x, float y, Color color, float thickness, float length, long id, int amount, float distance, float rotation, float cone){
+    color(color);
+    splashLine(x, y, thickness, length, id, amount, distance, rotation, cone);
+  }
 	public static void splashLine(float x, float y, float thickness, float length, long id, int amount, float distance, float rotation, float cone){
     randLenVectors(id, amount, distance, rotation, cone, (a, b) -> {
       float ang = Mathf.angle(a, b);
@@ -35,6 +43,10 @@ public class HMDraw {
   }
   public static void lineCircle(float x, float y, Color color, float thickness, float radius){
     color(color);
+    lineCircle(x, y, thickness, radius);
+  }
+  public static void lineCircle(float x, float y, Color colorFrom, Color colorTo, float inOut,float thickness, float radius){
+    color(colorFrom, colorTo, inOut);
     lineCircle(x, y, thickness, radius);
   } 
   public static void lineCircle(float x, float y, float thickness, float radius){

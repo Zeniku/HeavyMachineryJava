@@ -31,7 +31,10 @@ public class GroundSpikeBulletType extends BasicBulletType{
 	public GroundSpikeBulletType(float speed, float damage){
 		this(speed, damage, "bullet");
 	}
-
+	
+	public GroundSpikeBulletType(){
+		this(1, 1);
+	}
   @Override
 	public void drawLight(Bullet b){
 		//nothing

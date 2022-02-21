@@ -1,8 +1,10 @@
 package heav.content;
 
+import arc.graphics.*;
+import mindustry.graphics.*;
 import mindustry.entities.bullet.*;
 import mindustry.gen.*;
-import mindustry.graphics.*;
+import mindustry.content.*;
 import heav.entities.bullet.*;
 
 public class HMBullets {
@@ -14,7 +16,10 @@ public class HMBullets {
 	//Orbiter
 	standardOrbiter, mediumOrbiter, highOrbiter,
 	//Swords 
-	standardSword, mediumSword, highSword;
+	standardSword, mediumSword, highSword,
+
+	//UnitSpecific
+	luciusBullet, machaeraBullet;
 
 	public static void load(){
 		standardOverseer = new OverseerBulletType(2.5f, 18){{
@@ -105,6 +110,116 @@ public class HMBullets {
 			critTrail = HMFx.critTrail;
 			spawnFx = HMFx.swordSpawnFx;
 			trailColor = Pal.heal;
+		}};
+
+		standardSpike = new ShrapnelBulletType(){{
+			fromColor = Color.valueOf("404040");
+			toColor = Color.valueOf("2a2a2a");
+			hitColor = Color.valueOf("2a2a2a");
+			shootEffect = Fx.none;
+			smokeEffect = Fx.none;
+			serrations = 3;
+			hitEffect = Fx.mine;
+			knockback = 0;
+			reflectable = false;
+			width = 0;
+			length = 16;
+			lifetime = 12;
+			serrations = 3;
+			serrationWidth = 11;
+			serrationSpacing = 4;
+			serrationSpaceOffset = 9;
+			serrationLenScl = 6;
+			serrationFadeOffset = 0;
+			damage = 20;
+			recoil = -3; //dash
+		}};
+
+		mediumSpike = new ShrapnelBulletType(){{
+			fromColor = Color.valueOf("404040");
+			toColor = Color.valueOf("2a2a2a");
+			hitColor = Color.valueOf("2a2a2a");
+			shootEffect = Fx.none;
+			smokeEffect = Fx.none;
+			serrations = 3;
+			hitEffect = Fx.mine;
+			knockback = 0;
+			reflectable = false;
+			lifetime = 20;
+			width = 0;
+			length = 24;
+			serrations = 3;
+			serrationWidth = 11;
+			serrationSpacing = 4;
+			serrationSpaceOffset = 9;
+			serrationLenScl = 6;
+			serrationFadeOffset = 0;
+			damage = 30;
+			recoil = -2; //dass
+		}};
+
+		highSpike = new ShrapnelBulletType(){{
+			fromColor = Color.valueOf("404040");
+			toColor = Color.valueOf("2a2a2a");
+			hitColor = Color.valueOf("2a2a2a");
+			shootEffect = Fx.none;
+			smokeEffect = Fx.none;
+			serrations = 3;
+			hitEffect = Fx.mine;
+			knockback = 0;
+			reflectable = false;
+			lifetime = 30;
+			width = 8;
+			length = 32;
+			serrations = 3;
+			damage = 40;
+			recoil = -2; //dash
+			knockback = 0;
+			fragBullet = standardSpike;
+			fragBullets = 3;
+		}};
+
+		//UnitSpecific
+		luciusBullet = new ShrapnelBulletType(){{
+			fromColor = Color.valueOf("404040");
+			toColor = Color.valueOf("2a2a2a");
+			hitColor = Color.valueOf("2a2a2a");
+			shootEffect = Fx.none;
+			smokeEffect = Fx.none;
+			serrations = 3;
+			hitEffect = Fx.mine;
+			knockback = 0;
+			reflectable = false;
+			lifetime = 40;
+			width = 10;
+			length = 40;
+			serrations = 3;
+			damage = 65;
+			recoil = -2; //dash
+			knockback = -1;
+			fragBullet = mediumSpike;
+			fragBullets = 4;
+		}};
+
+		machaeraBullet = new ShrapnelBulletType(){{
+			fromColor = Color.valueOf("404040");
+			toColor = Color.valueOf("2a2a2a");
+			hitColor = Color.valueOf("2a2a2a");
+			shootEffect = Fx.none;
+			smokeEffect = Fx.none;
+			serrations = 3;
+			hitEffect = Fx.mine;
+			knockback = 0;
+			reflectable = false;
+			lifetime = 40;
+			width = 15;
+			length = 50;
+			serrations = 5;
+			damage = 75;
+			recoil = -2; //dash
+			knockback = -1;
+			fragBullet = mediumSpike;
+			fragBullets = 5;
 		}};
 	}
 }

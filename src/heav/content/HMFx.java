@@ -150,8 +150,15 @@ public class HMFx {
     Fill.circle(e.x, e.y, 10 * e.fin());
     color(Color.white);
     Fill.circle(e.x, e.y, 8 * e.fin());
-  });
+  }),
 
+  earthDust = new Effect(20, e -> {
+    HMDraw.splashCircle(e.x, e.y, 2.5f * e.fslope(), Color.valueOf("b28768ff"), Color.valueOf("8f665bff"), e.fin(), e.id, 10, e.finpow() * 10, e.rotation, 360);
+  }).layer(Layer.debris),
+
+  earthDustII = new Effect(30, e -> {
+    HMDraw.splashCircle(e.x, e.y, 5 * e.fslope(), Color.valueOf("b28768ff"), Color.valueOf("8f665bff"), e.fin(), e.id, 20, e.finpow() * 20, e.rotation, 360);
+  }).layer(Layer.debris);
 	public static class LightningData{
     Position pos;
     float stroke;

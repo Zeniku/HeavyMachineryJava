@@ -111,6 +111,8 @@ public class HMUnits{
 			range = 240;
 			lowAltitude = true;
 			armor = 3;
+			defaultController = FlyingAI::new;
+			constructor = UnitEntity::create;
 			weapons.add(
 				new Weapon("heavymachineryjava-spiculumWeapon"){{
 					x = 34 / 4;
@@ -148,6 +150,8 @@ public class HMUnits{
 			armor = 5;
 			engineOffset = 24.25f;
 			engineSize = 5;
+			defaultController = FlyingAI::new;
+			constructor = UnitEntity::create;
 
 			weapons.add(
 				new Weapon("heavymachineryjava-interitusSpikeWeapon"){{
@@ -251,6 +255,8 @@ public class HMUnits{
 			engineSize = 5;
 			range = 280;
 			maxRange = 280;
+			defaultController = FlyingAI::new;
+			constructor = UnitEntity::create;
 			
 			weapons.add(
 				new Weapon("heavymachineryjava-eteriusLaser"){{
@@ -420,6 +426,235 @@ public class HMUnits{
 					shootSound = Sounds.laser;
 					bullet = HMBullets.mediumOrbiter;
 					recoil = 4;
+				}}
+			);
+		}};
+
+		pugione = new UnitType("pugione"){{
+			speed = 0.6f;
+			hitSize = 11;
+			health = 300;
+			maxRange = 120;
+			range = 120;
+			rotateShooting = true;
+			targetAir = false;
+			armor = 3;
+			defaultController = GroundAI::new;
+			constructor = MechUnit::create;
+
+			weapons.add(
+				new Weapon("heavymachineryjava-pugioneWeapon"){{
+					reload = 20;
+					x = 5;
+					y = 0;
+					top = false;
+					ejectEffect = Fx.none;
+					shootSound = Sounds.shotgun;
+					shootY = 4.75f;
+					recoil = -4; //negative so it looks like it's punching
+					range = 80;
+					soundPitchMin = 0.42f;
+					soundPitchMax = 1.74f;
+					rotate = true;
+					rotateSpeed = 60;
+					bullet = HMBullets.standardSpike;
+				}}
+			);
+		}};
+
+		mucro = new UnitType("mucro"){{
+			speed = 0.45f;
+			hitSize = 11.75f;
+			health = 675;
+			targetAir = false;
+			maxRange = 170;
+			range = 170;
+			rotateShooting = true;
+			armor = 4;
+			defaultController = GroundAI::new;
+			constructor = MechUnit::create;
+
+			weapons.add(
+				new Weapon("heavymachineryjava-mucroWeapon"){{
+					x = 24 / 4;
+					y = 0;
+					reload = 30;
+					top = false;
+					ejectEffect = Fx.none;
+					shootSound = Sounds.shotgun;
+					shootY = 30 / 4;
+					recoil = -4; //negative so it looks like it's punching
+					targetAir = false;
+					soundPitchMin = 0.42f;
+					soundPitchMax = 1.74f;
+					rotate = true;
+					rotateSpeed = 60f;
+					bullet = HMBullets.mediumSpike;
+					shots = 4;
+					shotDelay = 5;
+					spacing = 22.5f;
+				}}
+			);
+		}};
+
+		tragula = new UnitType("tragula"){{
+			speed = 0.4f;
+			hitSize = 15;
+			health = 1175;
+			targetAir = false;
+			maxRange = 180;
+			range = 180;
+			rotateShooting = true;
+			armor = 9;
+			mechFrontSway = 0.55f;
+			defaultController = GroundAI::new;
+			constructor = MechUnit::create;
+
+			weapons.add(
+				new Weapon("heavymachineryjava-tragulaWeapon"){{
+					x = 8;
+					y = 1;
+					reload = 40;
+					top = false;
+					ejectEffect = Fx.none;
+					shootSound = Sounds.shotgun;
+					shootY = 35 / 4;
+					recoil = -4; //negative so it looks like it's punching
+					targetAir = false;
+					soundPitchMin = 0.42f;
+					soundPitchMax = 1.74f;
+					rotate = true;
+					rotateSpeed = 60;
+					bullet = HMBullets.highSpike;
+				}}
+			);
+		}};
+
+		lucius = new UnitType("lucius"){{
+			speed = 0.35f;
+			hitSize = 22.5f;
+			health = 12000;
+			targetAir = false;
+			maxRange = 190;
+			range = 190;
+			rotateShooting = true;
+			armor = 12;
+			canDrown = false;
+			mechFrontSway = 1;
+			mechStepParticles = true;
+			mechStepShake = 0.15f;
+			defaultController = GroundAI::new;
+			constructor = MechUnit::create;
+
+			weapons.add(
+				new Weapon("heavymachineryjava-luciusWeapon"){{
+					x = 44 / 4;
+					y = 1 / 4;
+					reload = 20;
+					top = false;
+					ejectEffect = Fx.none;
+					shootSound = Sounds.shotgun;
+					shootY = 43 / 4;
+					recoil = -4; //negative so it looks like it's punching
+					targetAir = false;
+					soundPitchMin = 0.42f;
+					soundPitchMax = 1.74f;
+					rotate = true;
+					rotateSpeed = 60;
+					bullet = HMBullets.luciusBullet;
+				}},
+				new Weapon("heavymachineryjava-earthBend"){{
+					x = 0;
+					y = 0;
+					reload = 120;
+					mirror = false;
+					top = false;
+					ejectEffect = Fx.none;
+					shootSound = Sounds.place;
+					shootY = 35 / 4;
+					targetAir = false;
+					soundPitchMin = 0.42f;
+					soundPitchMax = 1;
+					rotate = true;
+					rotateSpeed = 60;
+					bullet = new GroundSpikeBulletType(){{
+					  shootEffect = Fx.none;
+						speed = 2.5f;
+						lifetime = 60;
+						groundBullet = HMBullets.standardSpike;
+						groundEffect = HMFx.earthDust;
+						groundBullets = 6;
+						groundBulletST = 25;
+						groundEffectST = 5;
+						groundBulletSpacing = 22.5f;
+					}};
+				}}
+			);
+		}};
+
+		machaera = new UnitType("machaera"){{
+			speed = 0.3f;
+			hitSize = 31.75f;
+			health = 16000;
+			targetAir = false;
+			maxRange = 220;
+			range = 220;
+			rotateShooting = true;
+			armor = 16;
+			canDrown = false;
+			mechFrontSway = 1.79f;
+			mechSideSway = 0.6f;
+			mechStepParticles = true;
+			mechStepShake = 0.15f;
+			defaultController = GroundAI::new;
+			constructor = MechUnit::create;
+
+			weapons.add(
+				new Weapon("heavymachineryjava-machaeraWeapon"){{
+					x = 75 / 4;
+					y = -6 / 4;
+					reload = 35;
+					top = false;
+					ejectEffect = Fx.none;
+					shootSound = Sounds.shotgun;
+					shootY = 62 / 4;
+					recoil = -5;
+					targetAir = false;
+					soundPitchMin = 0.42f;
+					soundPitchMax = 1.74f;
+					rotate = true;
+					rotateSpeed = 60;
+					shots = 5;
+					bullet = HMBullets.machaeraBullet;
+					shotDelay = 5;
+					spacing = 0;
+					inaccuracy = 10;
+				}},
+				new Weapon("heavymachineryjava-earthBendII"){{
+					x = 0;
+					y = 0;
+					reload = 120;
+					mirror = false;
+					top = false;
+					ejectEffect = Fx.none;
+					shootSound = Sounds.place;
+					shootY = 35 / 4;
+					targetAir = false;
+					soundPitchMin = 0.42f;
+					soundPitchMax = 1;
+					rotate = true;
+					rotateSpeed = 60;
+					bullet = new GroundSpikeBulletType(){{
+						shootEffect = Fx.none;
+						speed = 2.5f;
+						lifetime = 60;
+						groundBullet = HMBullets.mediumSpike;
+						groundEffect = HMFx.earthDustII;
+						groundBullets = 8;
+						groundBulletST = 20;
+						groundEffectST = 5;
+						groundBulletSpacing = 22.5f;
+					}};
 				}}
 			);
 		}};

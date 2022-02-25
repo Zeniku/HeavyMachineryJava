@@ -19,7 +19,7 @@ import static mindustry.Vars.*;
 import heav.content.HMFx.LightningData;
 
 public class Tesla extends Block{
-	public float range = tilesize * 15f;
+	public float range = tilesize * 20f;
   public float reloadTime = 40f;
   public float damage = 20f;
 	public int lightningCount = 3;

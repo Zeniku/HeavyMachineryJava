@@ -31,7 +31,7 @@ public class LaserMoveAbility extends Ability{
       bullet.rotation(unit.rotation);
       bullet.time = 0f;
     }
-    if(scl >= 0.36f){
+    if(scl >= 0.15f){
       if(bullet == null){
        bullet = laser.create(unit, bx, by, unit.rotation);
       }

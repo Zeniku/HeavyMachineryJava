@@ -12,8 +12,8 @@ public class HMStatValues {
       table.table(s -> {
         s.left().defaults().padRight(3).left();
         sepC(status.maxShield > 0, s, "[lightgray]" + Core.bundle.get("status.maxShield") + ":[] " + status.maxShield);
-        sepC(status.shieldAmount > 0, s, "[lightgray]" + Core.bundle.get("status.shieldAmount") + ":[] " + status.shieldAmount + " " + StatUnit.perSecond.localized());
-        sepC(status.shieldAmount < 0, s, "[lightgray]" + Core.bundle.get("status.shieldRemoved") + ":[] " + status.shieldAmount + " " + StatUnit.perSecond.localized());
+        sepC(!status.remove, s, "[lightgray]" + Core.bundle.get("status.shieldAmount") + ":[] " + status.shieldAmount + " " + StatUnit.perSecond.localized());
+        sepC(status.remove, s, "[lightgray]" + Core.bundle.get("status.shieldRemoved") + ":[] " + status.shieldAmount + " " + StatUnit.perSecond.localized());
       });
     };
   }

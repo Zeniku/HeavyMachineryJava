@@ -4,9 +4,11 @@ import mindustry.content.*;
 import mindustry.game.*;
 import mindustry.type.*;
 import mindustry.world.*;
+import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.blocks.storage.*;
 import heav.world.blocks.defense.*;
 import heav.world.blocks.defense.turrets.*;
+import heav.world.draw.HMDrawAnimation;
 
 import static mindustry.type.ItemStack.*;
 
@@ -19,7 +21,9 @@ public class HMBlocks {
 	//turrets
 	heavenlyStrike,	praefector,
 	//defense
-	statusEffectProjector, tesla;
+	statusEffectProjector, tesla,
+	//Production
+	lonsdaleiteCompressor;
   
 	public static void load(){
 		statusEffectProjector = new StatusEffectProjector("statusEffectProjector"){{
@@ -38,6 +42,25 @@ public class HMBlocks {
   	  requirements(Category.effect, with(Items.titanium, 150, Items.plastanium, 150, HMItems.lonsdaleite, 100, Items.silicon, 200, Items.graphite, 300));
 			consumes.power(300f/60f);
 		}};
+
+		lonsdaleiteCompressor = new GenericCrafter("lonsdaleite-compressor"){{
+			size = 3;
+			hasPower = true;
+			hasItems = true;
+			hasLiquids = false;
+			craftTime = 45;
+			craftEffect = Fx.producesmoke;
+			update = true;
+			itemCapacity = 30;
+			consumes.power(0.7f);
+			consumes.item(Items.graphite, 20);
+
+			drawer = new HMDrawAnimation(){{
+				frameCount = 4;
+			}};
+			outputItem = new ItemStack(HMItems.lonsdaleite, 1);
+			requirements(Category.crafting, with(Items.copper, 100, Items.lead, 150, Items.silicon, 250, Items.titanium, 120, Items.graphite, 80));
+		}};
 		
 		heavenlyStrike = new FractalTurret("heavenlyStrike"){{
 			health = 1540;
@@ -45,6 +68,8 @@ public class HMBlocks {
       shots = 3;
 		  size = 4;
 			reloadTime = 20f;
+			shootType = HMBullets.mediumSword;
+			range = HMBullets.mediumSword.lifetime / 2f;
 			requirements(Category.turret, with(HMItems.lonsdaleite, 150, Items.titanium, 200, Items.lead, 280));
 		}};
 		
@@ -55,6 +80,8 @@ public class HMBlocks {
 		  size = 4;
 			reloadTime = 15f;
 			shots = 2;
+			shootType = HMBullets.mediumOverseer;
+			range = HMBullets.mediumOverseer.lifetime / 1.5f;
 			requirements(Category.turret, with(HMItems.lonsdaleite, 100, Items.titanium, 150, Items.lead, 180));
 		}};
 

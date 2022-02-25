@@ -72,8 +72,8 @@ public class HMUnits{
 					rotate = true;
 					continuous = true;
 					shootSound = Sounds.tractorbeam;
-					bullet = new RayBulletType(){{
-						length = 142;
+					bullet = new RayBulletType(3f, 142f){{
+						width = 2f;
 						maxRange = 142;
 						lifetime = 120;
 						force = 8f;
@@ -87,7 +87,7 @@ public class HMUnits{
 					reload = 30;
 					rotate = false;
 					bullet = new SapBulletType(){{
-						length = 8 * 15;
+						length = 8 * 10;
 						damage = 20;
 						shootEffect = Fx.shootSmall;
 						hitColor = Pal.sapBullet;

@@ -1,10 +1,11 @@
 package heav.entities.bullet;
 
-import arc.*;
 import arc.graphics.*;
+import arc.math.*;
 import arc.math.geom.*;
 import arc.util.*;
 import arc.graphics.g2d.*;
+import mindustry.game.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.gen.*;
@@ -13,37 +14,52 @@ import mindustry.content.*;
 
 //this is basically SapBulletType but Continuous
 public class RayBulletType extends BulletType {
-    public float length = 100f;
-    public float sapStrength = 0.5f;
-    public Color color = Color.white.cpy();
-    public float width = 0.4f;
-    public float force = 0.3f;
-    public float scaledForce = 4f;
+  public float length = 100f;
+  public float sapStrength = 0.5f;
+  public Color[] colors = {Pal.lancerLaser, Color.white.cpy()};
+  public float width = 3f;
+  public float force = 0.3f;
+  public float scaledForce = 4f;
+  public float fadeTime = 10f;
+  public float growTime = 10f;
+  public float[] widthScls = {1.8f, 1f};
 
-    public RayBulletType(){
-      speed = 0f;
-      despawnEffect = Fx.none;
-      pierce = true;
-      collides = false;
-      hitSize = 0f;
-      hittable = false;
-      hitEffect = Fx.hitLiquid;
-      status = StatusEffects.sapped;
-      lightColor = Pal.sap;
-      lightOpacity = 0.6f;
-      statusDuration = 60f * 3f;
-      impact = true;
-    }
-
+  public RayBulletType(float damage, float length){
+    super(0, damage);
+    this.length = length;
+    speed = 0f;
+    despawnEffect = Fx.none;
+    pierce = true;
+    collides = false;
+    hitSize = 0f;
+    hittable = false;
+    hitEffect = Fx.hitLiquid;
+    lightColor = Pal.sap;
+    lightOpacity = 0.6f;
+    impact = true;
+  }
+  public RayBulletType(){
+    this(1f, 1f);
+  }
   @Override
   public void draw(Bullet b){
     if(b.data instanceof Position data){
-      Tmp.v1.set(data).lerp(b, b.fin());
-      Draw.color(color);
-      Drawf.laser(b.team, Core.atlas.find("laser"), Core.atlas.find("laser-end"), b.x, b.y, Tmp.v1.x, Tmp.v1.y, width * b.fout());
-      Draw.reset();
+      Tmp.v1.set(data);
+        
+      float fin = Mathf.curve(b.fin(), 0, growTime / b.lifetime);
+      float fout = 1 - Mathf.curve(b.fin(), (b.lifetime - fadeTime) / b.lifetime, 1);
+      float lWidth = fin * fout * width;
 
-      Drawf.light(b.team, b.x, b.y, Tmp.v1.x, Tmp.v1.y, 15f * b.fout(), lightColor, lightOpacity);
+      for(int i = 0; i < 2; i++){
+        Draw.color(colors[i]);
+        Lines.stroke(lWidth * widthScls[i]);
+        Lines.line(b.x, b.y, Tmp.v1.x, Tmp.v1.y, false);
+        Fill.circle(b.x, b.y, Lines.getStroke() / 1.25f);
+        Fill.circle(Tmp.v1.x, Tmp.v1.y, Lines.getStroke() / 1.25f);
+        Draw.reset();
+      }
+
+      Drawf.light(Team.derelict, b.x, b.y, Tmp.v1.x, Tmp.v1.y, 15f * fin * fout + 5f, colors[1], lightOpacity);
     }
   }
 

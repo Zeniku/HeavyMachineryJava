@@ -8,6 +8,7 @@ import heav.world.meta.*;
 public class ShieldStatusEffect extends StatusEffect{
   public float shieldAmount = 20f;
   public float maxShield = 250f;
+  public boolean remove = false;
 
   public ShieldStatusEffect(String name){
     super(name); 
@@ -28,9 +29,9 @@ public class ShieldStatusEffect extends StatusEffect{
   public void update(Unit unit, float time){
     super.update(unit, time);
     if(unit.shield < maxShield){
-      if(shieldAmount > 0){
+      if(!remove){
         unit.shield = Math.min(unit.shield + (shieldAmount / 60), maxShield);
-      }else if(shieldAmount < 0){
+      }else{
         unit.shield = Math.max(unit.shield - (shieldAmount / 60), 0);
       }
     }

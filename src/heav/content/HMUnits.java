@@ -123,8 +123,7 @@ public class HMUnits{
 						length = 8 * 10;
 						damage = 37;
 						shootEffect = Fx.shootSmall;
-						hitColor = Pal.sapBullet;
-						color = Pal.sapBullet;
+						hitColor = color = Pal.sapBullet;
 						despawnEffect = Fx.none;
 						width = 0.5f;
 						knockback = 2.5f;
@@ -155,15 +154,14 @@ public class HMUnits{
 
 			weapons.add(
 				new Weapon("heavymachineryjava-interitusSpikeWeapon"){{
-					reload = 20;
-					rotate = false;
+					reload = 30;
+					rotate = true;
 					x = 49 / 4;
 					y = 27 / 4;
 					bullet = new ShrapnelBulletType(){{
-						hitColor = Pal.sapBulletBack;
 						fromColor = Pal.sapBullet;
-						toColor = Pal.sapBulletBack;
-						length = 20 * 8;
+						toColor = hitColor = Pal.sapBulletBack;
+						length = 30 * 8;
 						damage = 25;
 						width = 16;
 						status = StatusEffects.sapped;
@@ -175,14 +173,13 @@ public class HMUnits{
 
 				new Weapon("heavymachineryjava-interitusSpikeWeapon"){{
 					reload = 20;
-					rotate = false;
+					rotate = true;
 					x = 74 / 4;
 					y = -9 / 4;
 					bullet = new ShrapnelBulletType(){{
-						hitColor = Pal.sapBulletBack;
 						fromColor = Pal.sapBullet;
-						toColor = Pal.sapBulletBack;
-						length = 20 * 8;
+						toColor = hitColor = Pal.sapBulletBack;
+						length = 25 * 8;
 						damage = 25;
 						width = 16;
 						status = StatusEffects.sapped;
@@ -201,8 +198,7 @@ public class HMUnits{
 						collidesTiles = true;
 						speed = 3.7f;
 						lifetime = 55;
-						hitEffect = HMFx.bigBoom;
-						despawnEffect = HMFx.bigBoom;
+						hitEffect = despawnEffect = HMFx.bigBoom;
 						height = 16;
 						width = 16;
 						damage = 230;
@@ -219,8 +215,7 @@ public class HMUnits{
 							damage = 30;
 							splashDamage = 15;
 							splashDamageRadius = 3 * 8;
-							hitColor = Pal.sapBulletBack;
-							backColor = Pal.sapBulletBack;
+							hitColor = backColor = Pal.sapBulletBack;
 							frontColor = Pal.sapBullet;
 							status = StatusEffects.sapped;
 							statusDuration = 60 * 7;
@@ -279,8 +274,7 @@ public class HMUnits{
 						lightningLengthRand = 15;
 						lightningDamage = 50;
 						lightningAngleRand = 40;
-						lightningColor = Pal.sapBullet;
-						lightColor = Pal.sapBullet;
+						lightningColor = lightColor = Pal.sapBullet;
 						largeHit = true;
 						sideAngle = 15;
 						sideWidth = 0;
@@ -302,29 +296,29 @@ public class HMUnits{
 					reload = 30;
 					shootSound = Sounds.shootSnap;
 					recoil = 3;
-					bullet = new BasicBulletType(){{
+					rotate = true;
+					bullet = new ArtilleryBulletType(){{
 						damage = 40;
 						splashDamage = 20;
 						splashDamageRadius = 8 * 6;
-						lifetime = 60;
+						lifetime = 90;
 						speed = 2.3f;
-						height = 12;
-						width = 10;
+						height = 18;
+						width = 16;
 						frontColor = Pal.sapBullet;
 						backColor = Pal.sapBulletBack;
 						fragBullets = 5;
 						fragBullet = new MissileBulletType(){{
 							damage = 50;
-							speed = 2;
+							speed = 2.3f;
 							homingPower = 4;
-							frontColor = Pal.sapBullet;
-							backColor = Pal.sapBullet;
-							height = 6;
-							width = 46;
+							frontColor = trailColor = Pal.sapBullet;
+							backColor = Pal.sapBulletBack;
+							height = 10;
+							width = 8;
 							splashDamage = 20;
 							splashDamageRadius = 8 * 5;
-							lifetime = 50;
-							trailColor = Pal.sapBullet;
+							lifetime = 60;
 						}};
 						status = StatusEffects.sapped;
 						statusDuration = 60 * 7;
@@ -584,7 +578,7 @@ public class HMUnits{
 						groundBullet = HMBullets.standardSpike;
 						groundEffect = HMFx.earthDust;
 						groundBullets = 6;
-						groundBulletST = 25;
+						groundBulletST = 9.375f;
 						groundEffectST = 5;
 						groundBulletSpacing = 22.5f;
 					}};
@@ -624,7 +618,7 @@ public class HMUnits{
 					soundPitchMax = 1.74f;
 					rotate = true;
 					rotateSpeed = 60;
-					shots = 5;
+					shots = 2;
 					bullet = HMBullets.machaeraBullet;
 					shotDelay = 5;
 					spacing = 0;
@@ -650,8 +644,8 @@ public class HMUnits{
 						lifetime = 60;
 						groundBullet = HMBullets.mediumSpike;
 						groundEffect = HMFx.earthDustII;
-						groundBullets = 8;
-						groundBulletST = 20;
+						groundBullets = 6;
+						groundBulletST = 6.25f;
 						groundEffectST = 5;
 						groundBulletSpacing = 22.5f;
 					}};

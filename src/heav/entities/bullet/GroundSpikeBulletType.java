@@ -1,6 +1,7 @@
 package heav.entities.bullet;
 
 import mindustry.gen.*;
+import arc.graphics.Color;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
@@ -47,16 +48,18 @@ public class GroundSpikeBulletType extends BasicBulletType{
 
   @Override
 	public void update(Bullet b){
+
 		if(b.timer.get(0, groundEffectST)){
 			if(groundEffect != null && groundEffect != Fx.none){
-		  	groundEffect.at(b.x, b.y, b.rotation());
+		  	groundEffect.at(b.x, b.y, b.rotation(), b.tileOn().floor().mapColor);
 	  	}
 			Sounds.place.at(b.x, b.y, 0.42f, 1f);
 		}
+
 		if(b.timer.get(1, groundBulletST)){
-			groundEffect.at(b.x, b.y, b.rotation());
+			groundEffect.at(b.x, b.y, b.rotation(), b.tileOn().floor().mapColor);
 			for(int i = 0; i < groundBullets; i++){
-				float angle = b.rotation() + (i - (groundBullets / 2f)) * groundBulletSpacing;
+				float angle = b.rotation() + (i - (groundBullets / 2)) * groundBulletSpacing;
 				groundBullet.create(b, b.x, b.y, angle);
 			};
 		};

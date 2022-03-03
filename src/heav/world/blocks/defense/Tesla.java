@@ -63,20 +63,17 @@ public class Tesla extends Block{
         rTime = Math.min(rTime + edelta(), reloadTime);
         if(rTime >= reloadTime){
           HMFunc.radiusEnemies(team, x, y, range(), u -> {
-            u.apply(StatusEffects.disarmed, 10f);
-            u.apply(StatusEffects.shocked, 15f);
             u.damage(damage);
             float ang = Angles.angle(x, y, u.x, u.y);
-						if(hitEffect != Fx.none){
-              hitEffect.at(u, ang);
+						if(hitEffect != Fx.none) hitEffect.at(u, ang);
+
+            HMFx.fakeLightning.at(x, y, ang, lightningColor, new LightningData(u, 4f)); 
+            if(Mathf.chance(25f)){
+              for(int i = 0; i < lightningCount; i++){
+                Lightning.create(team, lightningColor, damage * 0.5f, x, y, Mathf.random(0f, 359f), Mathf.random(lightningLength, lightningLengthRand));
+              }
             }
-            HMFx.fakeLightning.at(x, y, ang, lightningColor, new LightningData(u, 4f));
           });
-          if(Mathf.chance(25f)){
-            for(int i = 0; i < lightningCount; i++){
-              Lightning.create(team, lightningColor, damage * 0.5f, x, y, Mathf.random(0f, 359f), Mathf.random(lightningLength, lightningLengthRand));
-            }
-          }
           rTime = 0f;
         }
       }

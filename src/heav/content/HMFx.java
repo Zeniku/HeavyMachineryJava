@@ -143,9 +143,10 @@ public class HMFx {
   }),
 
   laserCharge = new Effect(80, e -> {
-    HMDraw.splashCircle(e.x, e.y, 5 * e.fslope(), Pal.sapBullet, Pal.sapBulletBack, e.fin(), e.id, 20, (1 - e.finpow()) * (8 * 6), e.rotation, 360);
-    HMDraw.lineCircle(e.x, e.y, Pal.sapBullet, Pal.sapBulletBack, e.fin(), 4 * e.fin(), (6 * 7) * (1 - e.finpow()));
-    HMDraw.lineCircle(e.x, e.y, Pal.sapBullet, Pal.sapBulletBack, e.fin(), 4 * e.fin(), (6 * 11) * (1 - e.finpow()));
+    color(Pal.sapBullet, Pal.sapBulletBack, e.fin());
+    HMDraw.splashCircle(e.x, e.y, 5 * e.fslope(), e.id, 20, (1 - e.finpow()) * (8 * 6), e.rotation, 360);
+    HMDraw.lineCircle(e.x, e.y, 4 * e.fin(), (6 * 7) * (1 - e.finpow()));
+    HMDraw.lineCircle(e.x, e.y, 4 * e.fin(), (6 * 11) * (1 - e.finpow()));
     color(Pal.sapBullet);
     Fill.circle(e.x, e.y, 10 * e.fin());
     color(Color.white);
@@ -153,12 +154,15 @@ public class HMFx {
   }),
 
   earthDust = new Effect(20, e -> {
-    HMDraw.splashCircle(e.x, e.y, 2.5f * e.fslope(), Color.valueOf("b28768ff"), Color.valueOf("8f665bff"), e.fin(), e.id, 10, e.finpow() * 10, e.rotation, 360);
+    color(e.color);
+    HMDraw.splashCircle(e.x, e.y, 2.5f * e.fslope(), e.id, 10, e.finpow() * 10, e.rotation, 360);
   }).layer(Layer.debris),
 
   earthDustII = new Effect(30, e -> {
-    HMDraw.splashCircle(e.x, e.y, 5 * e.fslope(), Color.valueOf("b28768ff"), Color.valueOf("8f665bff"), e.fin(), e.id, 20, e.finpow() * 20, e.rotation, 360);
+    color(e.color);
+    HMDraw.splashCircle(e.x, e.y, 5 * e.fslope(), e.id, 20, e.finpow() * 20, e.rotation, 360);
   }).layer(Layer.debris);
+
 	public static class LightningData{
     Position pos;
     float stroke;

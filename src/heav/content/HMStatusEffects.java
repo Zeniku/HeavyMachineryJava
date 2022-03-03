@@ -12,6 +12,7 @@ public class HMStatusEffects {
 			shieldAmount = 15f;
 			maxShield = 240f;
 		}};
+
 		shieldBreak = new ShieldStatusEffect("sheildBreak"){{
 			shieldAmount = 15f;
 			maxShield = 240f;

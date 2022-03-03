@@ -89,6 +89,7 @@ public class HMBlocks {
       dRChance = 15f;
       dRPercentage = 20f;
       health = 520;
+			insulated = true;
       requirements(Category.defense, with(HMItems.lonsdaleite, 6, Items.phaseFabric, 6));
 		}};
 
@@ -97,6 +98,7 @@ public class HMBlocks {
       dRChance = 15f;
       dRPercentage = 45f;
 		  health = 2800;
+			insulated = true;
 			requirements(Category.defense, with(HMItems.lonsdaleite, 24, Items.phaseFabric, 24));
 		}};
 

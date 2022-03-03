@@ -6,7 +6,7 @@ import mindustry.content.Bullets;
 import mindustry.entities.abilities.Ability;
 import mindustry.entities.bullet.BulletType;
 
-public class LaserMoveAbility extends Ability{
+public class LaserMoveAbility extends Ability {
   protected Bullet bullet = null;
   public BulletType laser = Bullets.standardCopper;
   public float offsetX = 0f;
@@ -31,7 +31,7 @@ public class LaserMoveAbility extends Ability{
       bullet.rotation(unit.rotation);
       bullet.time = 0f;
     }
-    if(scl >= 0.15f){
+    if(scl >= 0.5f){
       if(bullet == null){
        bullet = laser.create(unit, bx, by, unit.rotation);
       }

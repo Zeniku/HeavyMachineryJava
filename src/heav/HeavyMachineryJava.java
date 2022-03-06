@@ -13,7 +13,7 @@ public class HeavyMachineryJava extends Mod{
   public HeavyMachineryJava(){
 
   //listen for game load event
-  Events.on(ClientLoadEvent.class, e -> { 
+  Events.on(ClientLoadEvent.class, e -> {
     //show dialog upon startup
     Time.runTask(10f, () -> {
     
@@ -36,9 +36,9 @@ public class HeavyMachineryJava extends Mod{
 
   @Override
   public void loadContent(){
+    HMItems.load();
     HMStatusEffects.load();
     HMBullets.load();
-    HMItems.load();
     HMUnits.load();
     HMBlocks.load();
   }

@@ -17,6 +17,6 @@ description: "A Mindustry Java mod."
 version: 1.0
 
 #the minimum game build required to run this mod
-minGameVersion: 132
+minGameVersion: 135
 
 java: true

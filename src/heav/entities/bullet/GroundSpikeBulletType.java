@@ -1,7 +1,6 @@
 package heav.entities.bullet;
 
 import mindustry.gen.*;
-import arc.graphics.Color;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;

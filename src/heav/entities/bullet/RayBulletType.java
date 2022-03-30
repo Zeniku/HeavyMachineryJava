@@ -13,6 +13,7 @@ import mindustry.graphics.*;
 import mindustry.content.*;
 
 //this is basically SapBulletType but Continuous
+
 public class RayBulletType extends BulletType {
   public float length = 100f;
   public float sapStrength = 0.5f;

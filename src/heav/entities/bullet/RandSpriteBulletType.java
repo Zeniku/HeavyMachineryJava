@@ -108,7 +108,7 @@ public class RandSpriteBulletType extends BasicBulletType{
   @Override
   public void drawTrail(Bullet b){
     if(trailLength > 0 && b.trail != null){
-      //draw below bullets? TODO
+      // TODO draw below bullets? 
       float z = Draw.z();
       Draw.z(z - 0.0001f);
       b.trail.draw(trailColor, trailWidth);

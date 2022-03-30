@@ -33,7 +33,7 @@ public class OrbiterBulletType extends OverseerBulletType{
   @Override
   public void init(Bullet b){
     if(b.data == null){
-      Seq<Trail> trails = new Seq();
+      Seq<Trail> trails = new Seq<Trail>();
       FloatSeq oX = new FloatSeq(), oY = new FloatSeq();
       for(int i = 0; i < orbiters; i++){
         oX.add(b.x);
@@ -93,7 +93,7 @@ public class OrbiterBulletType extends OverseerBulletType{
     public Seq<Trail> trails;
     public FloatSeq oX, oY;
     
-    public OrbiterBulletData(boolean home, Seq trails, FloatSeq oX, FloatSeq oY){
+    public OrbiterBulletData(boolean home, Seq<Trail> trails, FloatSeq oX, FloatSeq oY){
       super(home);
       this.oX = oX;
       this.oY = oY;

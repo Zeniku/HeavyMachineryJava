@@ -69,7 +69,7 @@ public class HMBlocks {
 		  size = 4;
 			reloadTime = 20f;
 			shootType = HMBullets.mediumSword;
-			range = HMBullets.mediumSword.lifetime / 2f;
+			range = (shootType.lifetime * shootType.speed) / 2f;
 			requirements(Category.turret, with(HMItems.lonsdaleite, 150, Items.titanium, 200, Items.lead, 280));
 		}};
 		
@@ -81,7 +81,7 @@ public class HMBlocks {
 			reloadTime = 15f;
 			shots = 2;
 			shootType = HMBullets.mediumOverseer;
-			range = HMBullets.mediumOverseer.lifetime / 1.5f;
+			range = (shootType.lifetime * shootType.speed) / 1.5f;
 			requirements(Category.turret, with(HMItems.lonsdaleite, 100, Items.titanium, 150, Items.lead, 180));
 		}};
 

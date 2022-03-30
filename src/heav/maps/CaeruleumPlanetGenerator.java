@@ -28,9 +28,10 @@ public class CaeruleumPlanetGenerator extends SerpuloPlanetGenerator{
   BaseGenerator basegen = new BaseGenerator();
   float scl = 5f;
   float waterOffset = 0.7f;
-  static final int seed = 3;
+  static final int seed = 70;
+  boolean genLakes = false;
 
-  Block[][] arr ={
+  Block[][] arr = {
     {Blocks.water, Blocks.darksandWater, Blocks.darksand, Blocks.darksand, Blocks.darksand, Blocks.darksand, Blocks.darksand, Blocks.darksand, Blocks.darksand, Blocks.darksand, Blocks.darksandWater, Blocks.stone, Blocks.stone},
     {Blocks.water, Blocks.darksandWater, Blocks.darksand, Blocks.darksand, Blocks.darksand, Blocks.darksand, Blocks.darksand, Blocks.darksand, Blocks.darksand, Blocks.darksandWater, Blocks.stone, Blocks.stone, Blocks.stone},
     {Blocks.water, Blocks.darksandWater, Blocks.darksand, Blocks.darksand, Blocks.salt, Blocks.darksand, Blocks.darksand, Blocks.darksand, Blocks.darksand, Blocks.darksandWater, Blocks.stone, Blocks.stone, Blocks.stone},
@@ -119,23 +120,23 @@ public class CaeruleumPlanetGenerator extends SerpuloPlanetGenerator{
 
   protected void generate(){
     class Room{
-        int x, y, radius;
-        ObjectSet<Room> connected = new ObjectSet<>();
+      int x, y, radius;
+      ObjectSet<Room> connected = new ObjectSet<>();
 
-        Room(int x, int y, int radius){
-            this.x = x;
-            this.y = y;
-            this.radius = radius;
-            connected.add(this);
-        }
-
-        void connect(Room to){
-          if(connected.contains(to)) return;
-          connected.add(to);
-          float nscl = rand.random(100f, 140f) * 6f;
-          int stroke = rand.random(3, 9);
-          brush(pathfind(x, y, to.x, to.y, tile -> (tile.solid() ? 50f : 0f) + noise(tile.x, tile.y, 2, 0.4f, 1f / nscl) * 500, Astar.manhattan), stroke);
-        }
+      Room(int x, int y, int radius){
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        connected.add(this);
+      }
+      //For now no liquidStuff means no naval stuff
+      void connect(Room to){
+        if(connected.contains(to)) return;
+        connected.add(to);
+        float nscl = rand.random(100f, 140f) * 6f;
+        int stroke = rand.random(3, 9);
+        brush(pathfind(x, y, to.x, to.y, tile -> (tile.solid() ? 50f : 0f) + noise(tile.x, tile.y, 2, 0.4f, 1f / nscl) * 500, Astar.manhattan), stroke);
+      }
     }
 
     cells(4);
@@ -312,29 +313,50 @@ public class CaeruleumPlanetGenerator extends SerpuloPlanetGenerator{
     tech();
 
     pass((x, y) -> {
-        //random moss
-        if(floor == Blocks.sporeMoss){
-          if(Math.abs(0.5f - noise(x - 90, y, 4, 0.8, 65)) > 0.02){
-            floor = Blocks.moss;
-          }
+      //tar
+      if(floor == Blocks.darksand){
+        if(Math.abs(0.5f - noise(x - 40, y, 2, 0.7, 80)) > 0.25f &&
+          Math.abs(0.5f - noise(x, y + sector.id*10, 1, 1, 60)) > 0.41f && !(roomseq.contains(r -> Mathf.within(x, y, r.x, r.y, 15)))){
+          floor = Blocks.tar;
         }
+      }
 
-        //tar
-        if(floor == Blocks.darksand){
-          if(Math.abs(0.5f - noise(x - 40, y, 2, 0.7, 80)) > 0.25f &&
-            Math.abs(0.5f - noise(x, y + sector.id*10, 1, 1, 60)) > 0.41f && !(roomseq.contains(r -> Mathf.within(x, y, r.x, r.y, 15)))){
-            floor = Blocks.tar;
-          }
-        }
-
-        //random stuff
-        dec: {
-          for(int i = 0; i < 4; i++){
-            Tile near = world.tile(x + Geometry.d4[i].x, y + Geometry.d4[i].y);
-            if(near != null && near.block() != Blocks.air){
-              break dec;
+      //hotrock tweaks
+      if(floor == Blocks.hotrock){
+        if(Math.abs(0.5f - noise(x - 90, y, 4, 0.8, 80)) > 0.035){
+          floor = Blocks.basalt;
+        }else{
+          ore = Blocks.air;
+          boolean all = true;
+          for(Point2 p : Geometry.d4){
+            Tile other = tiles.get(x + p.x, y + p.y);
+            if(other == null || (other.floor() != Blocks.hotrock && other.floor() != Blocks.magmarock)){
+              all = false;
             }
           }
+          if(all){
+            floor = Blocks.magmarock;
+          }
+        }
+      }else if(genLakes && floor != Blocks.basalt && floor != Blocks.ice && floor.asFloor().hasSurface()){
+        float noise = noise(x + 782, y, 5, 0.75f, 260f, 1f);
+        if(noise > 0.67f && !roomseq.contains(e -> Mathf.within(x, y, e.x, e.y, 14))){
+          if(noise > 0.72f){
+            floor = noise > 0.78f ? Blocks.taintedWater : (floor == Blocks.sand ? Blocks.sandWater : Blocks.darksandTaintedWater);
+          }else{
+            floor = (floor == Blocks.sand ? floor : Blocks.darksand);
+          }
+        }
+      }
+
+      //random stuff
+      dec: {
+        for(int i = 0; i < 4; i++){
+          Tile near = world.tile(x + Geometry.d4[i].x, y + Geometry.d4[i].y);
+          if(near != null && near.block() != Blocks.air){
+            break dec;
+          }
+        }
 
         if(rand.chance(0.01) && floor.asFloor().hasSurface() && block == Blocks.air){
           block = dec.get(floor, floor.asFloor().decoration);
@@ -456,6 +478,5 @@ public class CaeruleumPlanetGenerator extends SerpuloPlanetGenerator{
   @Override
   public void generateSector(Sector sector) {
     super.generateSector(sector);
-    sector.generateEnemyBase = false;
   }
 }

@@ -1,18 +1,17 @@
 package heav.content;
 
 import arc.util.Nullable;
-import mindustry.content.Blocks;
-import mindustry.content.TechTree;
+import arc.struct.Seq;
+import mindustry.content.*;
 import mindustry.content.TechTree.TechNode;
 import mindustry.ctype.UnlockableContent;
 import mindustry.type.ItemStack;
-import arc.struct.Seq;
-import mindustry.game.Objectives;
+import mindustry.game.Objectives.*;
 
 public class HMTechTree {
-	private static void node(UnlockableContent parent, UnlockableContent child, @Nullable ItemStack[] requirements, @Nullable Seq<Objectives.Objective> objectives) {
+	private static void node(UnlockableContent parent, UnlockableContent child, @Nullable ItemStack[] requirements, Seq<Objective> objectives) {
 		ItemStack[] requirementsIn = (requirements != null)? requirements : child.researchRequirements();
-		TechNode newNode = new TechTree.TechNode(TechTree.get(parent) , child, requirementsIn);
+		TechNode newNode = new TechTree.TechNode(TechTree.get(parent), child, requirementsIn);
 		
 		if (objectives != null) newNode.objectives.addAll(objectives);
 	}
@@ -26,6 +25,18 @@ public class HMTechTree {
 	}
 
 	public static void load(){
-		node(Blocks.coreShard, HMSectorPresents.generated);
+		// Planets and SectorPresets
+		node(SectorPresets.tarFields, HMPlanets.caeruleum, null, Seq.with(new SectorComplete(SectorPresets.tarFields)));
+		node(HMPlanets.caeruleum, HMSectorPresents.generated);
+
+		//Blocks
+		node(Blocks.coreFoundation, HMBlocks.miniCore);
+		node(Blocks.lancer, HMBlocks.praefector);
+		node(HMBlocks.praefector, HMBlocks.heavenlyStrike);
+		node(Blocks.plastaniumWallLarge, HMBlocks.lonsdaleiteWall);
+		node(HMBlocks.lonsdaleiteWall, HMBlocks.lonsdaleiteWallLarge);
+		node(Blocks.overdriveProjector, HMBlocks.statusEffectProjector);
+		node(HMBlocks.statusEffectProjector, HMBlocks.tesla);
+		node(Blocks.siliconCrucible, HMBlocks.lonsdaleiteCompressor);
 	}
 }

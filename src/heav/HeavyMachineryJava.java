@@ -24,5 +24,8 @@ public class HeavyMachineryJava extends Mod{
     HMBullets.load();
     HMUnits.load();
     HMBlocks.load();
+    HMPlanets.load();
+    HMSectorPresents.load();
+    HMTechTree.load();
   }
 }

@@ -5,7 +5,6 @@ import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.math.geom.*;
 import mindustry.entities.*;
-import mindustry.game.*;
 import mindustry.graphics.*;
 import heav.util.*;
 
@@ -84,7 +83,7 @@ public class HMFx {
             
       line(v1.x, v1.y, v2.x, v2.y, false);
       Fill.circle(v1.x, v1.y, getStroke() / 2f);
-      Drawf.light((Team)data[2], v1.x, v1.y, v2.x, v2.y, (float)data[1] * 3f, e.color, 0.4f);
+      Drawf.light(v1.x, v1.y, v2.x, v2.y, (float)data[1] * 3f, e.color, 0.4f);
     }
     Fill.circle(v2.x, v2.y, getStroke() / 2);
   }).layer(Layer.bullet + 0.01f),

@@ -13,7 +13,7 @@ import mindustry.gen.*;
 
 //wi made a bullet shoot a bullet aaaa
 public class PortalBulletType extends BasicBulletType{
-	public BulletType bullet = Bullets.standardCopper;
+	public BulletType bullet = Bullets.placeholder;
 	public float growTime = 10f, fadeTime = 10f;
 	public float shootTime = 40f;
 	public float radius = 3f;

@@ -8,7 +8,7 @@ import mindustry.entities.bullet.BulletType;
 
 public class LaserMoveAbility extends Ability {
   protected Bullet bullet = null;
-  public BulletType laser = Bullets.standardCopper;
+  public BulletType laser = Bullets.placeholder;
   public float offsetX = 0f;
   public float offsetY = 0f;
   public float min = 2f;

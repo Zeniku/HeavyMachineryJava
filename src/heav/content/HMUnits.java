@@ -3,6 +3,7 @@ package heav.content;
 import arc.graphics.*;
 import mindustry.content.*;
 import mindustry.entities.bullet.*;
+import mindustry.entities.pattern.ShootSpread;
 import mindustry.ai.types.*;
 import mindustry.gen.*;
 import mindustry.type.*;
@@ -29,7 +30,7 @@ public class HMUnits{
 			maxRange = 180f;
 			flying = true;
 			circleTarget = true;
-			defaultController = FlyingAI::new;
+			aiController = FlyingAI::new;
 			constructor = UnitEntity::create;
 			weapons.add(
 				new Weapon(){{
@@ -59,7 +60,7 @@ public class HMUnits{
 			circleTarget = false;
 			lowAltitude = true;
 			armor = 2;
-			defaultController = FlyingAI::new;
+			aiController = FlyingAI::new;
 			constructor = UnitEntity::create;
 			circleTarget = false;
 
@@ -111,7 +112,7 @@ public class HMUnits{
 			range = 240;
 			lowAltitude = true;
 			armor = 3;
-			defaultController = FlyingAI::new;
+			aiController = FlyingAI::new;
 			constructor = UnitEntity::create;
 			weapons.add(
 				new Weapon("heavymachineryjava-spiculumWeapon"){{
@@ -149,7 +150,7 @@ public class HMUnits{
 			armor = 5;
 			engineOffset = 24.25f;
 			engineSize = 5;
-			defaultController = FlyingAI::new;
+			aiController = FlyingAI::new;
 			constructor = UnitEntity::create;
 
 			weapons.add(
@@ -250,7 +251,7 @@ public class HMUnits{
 			engineSize = 5;
 			range = 280;
 			maxRange = 280;
-			defaultController = FlyingAI::new;
+			aiController = FlyingAI::new;
 			constructor = UnitEntity::create;
 			
 			weapons.add(
@@ -260,7 +261,7 @@ public class HMUnits{
 					mirror = false;
 					rotate = true;
 					rotateSpeed = 1.5f;
-					firstShotDelay = HMFx.laserCharge.lifetime;
+					shoot.firstShotDelay = HMFx.laserCharge.lifetime;
 					recoil = 4;
 					bullet = new LaserBulletType(){{
 						damage = 400;
@@ -322,14 +323,13 @@ public class HMUnits{
 						}};
 						status = StatusEffects.sapped;
 						statusDuration = 60 * 7;
-						fragCone = 15;
 					}};
 				}}
 			);
 		}};
 
 		princeps = new UnitType("princeps"){{
-			defaultController = DisabledPredictAi::new;
+			aiController = DisabledPredictAi::new;
 			constructor = MechUnit::create;
 			speed = 0.8f;
 			hitSize = 9;
@@ -352,7 +352,7 @@ public class HMUnits{
 		}};
 
 		procurator = new UnitType("procurator"){{
-			defaultController = DisabledPredictAi::new;
+			aiController = DisabledPredictAi::new;
 			constructor = MechUnit::create;
 			speed = 0.6f;
 			hitSize = 13.375f;
@@ -376,7 +376,7 @@ public class HMUnits{
 		}};
 
 		inductor = new UnitType("inductor"){{
-			defaultController = DisabledPredictAi::new;
+			aiController = DisabledPredictAi::new;
 			constructor = MechUnit::create;
 			health = 600;
 			speed = 0.56f;
@@ -387,14 +387,12 @@ public class HMUnits{
 			singleTarget = true;
 			legCount = 6;
 			legLength = 9;
-			legTrns = 0.6f;
+			legForwardScl = 0.6f;
 			legMoveSpace = 1.4f;
 			hovering = true;
 			armor = 6;
 			allowLegStep = true;
-			visualElevation = 0.2f;
-			groundLayer = 74;
-			visualElevation = 0.02f;
+			groundLayer = Layer.legUnit;
 
 			weapons.add(
 				new Weapon("heavymachineryjava-inductorShotgun"){{
@@ -404,7 +402,7 @@ public class HMUnits{
 					top = false;
 					ejectEffect = Fx.lightningShoot;
 					shootSound = Sounds.laser;
-					shots = 4;
+					shoot.shots = 4;
 					inaccuracy = 15;
 					bullet = HMBullets.mediumOverseer;
 				}},
@@ -430,10 +428,10 @@ public class HMUnits{
 			health = 300;
 			maxRange = 120;
 			range = 120;
-			rotateShooting = true;
+			
 			targetAir = false;
 			armor = 3;
-			defaultController = GroundAI::new;
+			aiController = GroundAI::new;
 			constructor = MechUnit::create;
 
 			weapons.add(
@@ -463,9 +461,9 @@ public class HMUnits{
 			targetAir = false;
 			maxRange = 170;
 			range = 170;
-			rotateShooting = true;
+			
 			armor = 4;
-			defaultController = GroundAI::new;
+			aiController = GroundAI::new;
 			constructor = MechUnit::create;
 
 			weapons.add(
@@ -484,9 +482,8 @@ public class HMUnits{
 					rotate = true;
 					rotateSpeed = 60f;
 					bullet = HMBullets.mediumSpike;
-					shots = 4;
-					shotDelay = 5;
-					spacing = 22.5f;
+					shoot = new ShootSpread(4, 22.5f);
+					shoot.shotDelay = 5;
 				}}
 			);
 		}};
@@ -498,10 +495,9 @@ public class HMUnits{
 			targetAir = false;
 			maxRange = 180;
 			range = 180;
-			rotateShooting = true;
 			armor = 9;
 			mechFrontSway = 0.55f;
-			defaultController = GroundAI::new;
+			aiController = GroundAI::new;
 			constructor = MechUnit::create;
 
 			weapons.add(
@@ -531,13 +527,12 @@ public class HMUnits{
 			targetAir = false;
 			maxRange = 190;
 			range = 190;
-			rotateShooting = true;
 			armor = 12;
 			canDrown = false;
 			mechFrontSway = 1;
 			mechStepParticles = true;
-			mechStepShake = 0.15f;
-			defaultController = GroundAI::new;
+			stepShake = 0.15f;
+			aiController = GroundAI::new;
 			constructor = MechUnit::create;
 
 			weapons.add(
@@ -592,15 +587,14 @@ public class HMUnits{
 			health = 16000;
 			targetAir = false;
 			maxRange = 220;
-			range = 220;
-			rotateShooting = true;
+			range = 220;	
 			armor = 16;
 			canDrown = false;
 			mechFrontSway = 1.79f;
 			mechSideSway = 0.6f;
 			mechStepParticles = true;
-			mechStepShake = 0.15f;
-			defaultController = GroundAI::new;
+			stepShake = 0.15f;
+			aiController = GroundAI::new;
 			constructor = MechUnit::create;
 
 			weapons.add(
@@ -618,10 +612,11 @@ public class HMUnits{
 					soundPitchMax = 1.74f;
 					rotate = true;
 					rotateSpeed = 60;
-					shots = 2;
+
+					shoot.shots = 2;
+					shoot.shotDelay = 5;
+
 					bullet = HMBullets.machaeraBullet;
-					shotDelay = 5;
-					spacing = 0;
 					inaccuracy = 10;
 				}},
 				new Weapon("heavymachineryjava-earthBendII"){{

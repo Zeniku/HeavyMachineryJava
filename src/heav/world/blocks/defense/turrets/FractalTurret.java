@@ -12,25 +12,6 @@ public class FractalTurret extends DisabledPredictTurret{
   }
   
   public class FractalTurretBuild extends DisabledPredictTurretBuild{
-    
-    @Override
-    protected void bullet(BulletType type, float angle){
-      var tp = (Vec2)targetPos;
-      
-      if(Mathf.dst(x + tr.x, y + tr.y, tp.x, tp.y) > range){
-          Tmp.v1.set(tp).sub(x, y).clamp(-range, range).add(x, y);
-      }else{
-          Tmp.v1.set(tp);
-      }
-      
-      float rx = Tmp.v1.x + Angles.trnsx(Mathf.random(360), Mathf.random(range));
-      float ry = Tmp.v1.y + Angles.trnsy(Mathf.random(360), Mathf.random(range));
-      
-      float ang = Angles.angle(rx, ry, tp.x, tp.y);
-      
-      float lifeScl = type.scaleVelocity ? Mathf.clamp(Mathf.dst(rx, ry, tp.x, tp.y) / type.range(), minRange / type.range(), range / type.range()) : 1f;
 
-      type.create(this, team, rx, ry, ang, 1f + Mathf.range(velocityInaccuracy), lifeScl);
-    }
   }
 }

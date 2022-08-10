@@ -19,7 +19,7 @@ public class OrbiterBulletType extends OverseerBulletType{
   public float orbiterRadius = 4f;
   public float orbiterTrailWidth = 2f;
   public Effect orbiterTrailEffect = Fx.none;
-  public BulletType orbiter = Bullets.standardCopper;
+  public BulletType orbiter = Bullets.placeholder;
 
   public OrbiterBulletType(float speed, float damage, String sprite){
     super(speed, damage, sprite);

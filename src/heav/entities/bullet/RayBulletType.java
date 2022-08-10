@@ -60,7 +60,7 @@ public class RayBulletType extends BulletType {
         Draw.reset();
       }
 
-      Drawf.light(Team.derelict, b.x, b.y, Tmp.v1.x, Tmp.v1.y, 15f * fin * fout + 5f, colors[1], lightOpacity);
+      Drawf.light(b.x, b.y, Tmp.v1.x, Tmp.v1.y, 15f * fin * fout + 5f, colors[1], lightOpacity);
     }
   }
 
@@ -69,7 +69,6 @@ public class RayBulletType extends BulletType {
     //no light
   }
 
-  @Override
   public float range(){
     return Math.max(length, maxRange);
   }

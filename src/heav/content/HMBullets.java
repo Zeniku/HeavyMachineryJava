@@ -17,6 +17,8 @@ public class HMBullets {
 	standardOrbiter, mediumOrbiter, highOrbiter,
 	//Swords 
 	standardSword, mediumSword, highSword,
+	//Portal
+	standardPortal, mediumPortal, highPortal,
 
 	//UnitSpecific
 	luciusBullet, machaeraBullet;
@@ -113,9 +115,9 @@ public class HMBullets {
 		}};
 
 		standardSpike = new ShrapnelBulletType(){{
-			fromColor = Color.valueOf("404040");
-			toColor = Color.valueOf("2a2a2a");
-			hitColor = Color.valueOf("2a2a2a");
+			fromColor = Color.valueOf("404040FF");
+			toColor = Color.valueOf("2a2a2aFF");
+			hitColor = Color.valueOf("2a2a2aFF");
 			shootEffect = Fx.none;
 			smokeEffect = Fx.none;
 			serrations = 3;
@@ -136,9 +138,9 @@ public class HMBullets {
 		}};
 
 		mediumSpike = new ShrapnelBulletType(){{
-			fromColor = Color.valueOf("404040");
-			toColor = Color.valueOf("2a2a2a");
-			hitColor = Color.valueOf("2a2a2a");
+			fromColor = Color.valueOf("404040FF");
+			toColor = Color.valueOf("2a2a2aFF");
+			hitColor = Color.valueOf("2a2a2aFF");
 			shootEffect = Fx.none;
 			smokeEffect = Fx.none;
 			serrations = 3;
@@ -159,9 +161,9 @@ public class HMBullets {
 		}};
 
 		highSpike = new ShrapnelBulletType(){{
-			fromColor = Color.valueOf("404040");
-			toColor = Color.valueOf("2a2a2a");
-			hitColor = Color.valueOf("2a2a2a");
+			fromColor = Color.valueOf("404040FF");
+			toColor = Color.valueOf("2a2a2aFF");
+			hitColor = Color.valueOf("2a2a2aFF");
 			shootEffect = Fx.none;
 			smokeEffect = Fx.none;
 			serrations = 3;
@@ -178,6 +180,9 @@ public class HMBullets {
 			fragBullet = standardSpike;
 			fragBullets = 3;
 		}};
+
+		//Portal
+		standardPortal = new PortalBulletType(){{}};
 
 		//UnitSpecific
 		luciusBullet = new ShrapnelBulletType(){{
@@ -202,9 +207,9 @@ public class HMBullets {
 		}};
 
 		machaeraBullet = new ShrapnelBulletType(){{
-			fromColor = Color.valueOf("404040");
-			toColor = Color.valueOf("2a2a2a");
-			hitColor = Color.valueOf("2a2a2a");
+			fromColor = Color.valueOf("404040FF");
+			toColor = Color.valueOf("2a2a2aFF");
+			hitColor = Color.valueOf("2a2a2aFF");
 			shootEffect = Fx.none;
 			smokeEffect = Fx.none;
 			serrations = 3;

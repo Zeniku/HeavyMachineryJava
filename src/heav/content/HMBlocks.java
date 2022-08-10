@@ -1,14 +1,16 @@
 package heav.content;
 
 import mindustry.content.*;
+import mindustry.entities.pattern.ShootAlternate;
+import mindustry.entities.pattern.ShootPattern;
 import mindustry.game.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.blocks.storage.*;
+import mindustry.world.draw.DrawFrames;
 import heav.world.blocks.defense.*;
 import heav.world.blocks.defense.turrets.*;
-import heav.world.draw.HMDrawAnimation;
 
 import static mindustry.type.ItemStack.*;
 
@@ -32,7 +34,7 @@ public class HMBlocks {
       size = 3;
       health = 900;
       requirements(Category.effect, with(Items.titanium, 200, Items.plastanium, 100, Items.silicon, 200, Items.graphite, 300));
-			consumes.power(300f/60f);	
+			consumePower(300f/60f);	
 		}};
 		
 		tesla = new Tesla("tesla"){{
@@ -40,7 +42,7 @@ public class HMBlocks {
       size = 3;
       health = 1500;
   	  requirements(Category.effect, with(Items.titanium, 150, Items.plastanium, 150, HMItems.lonsdaleite, 100, Items.silicon, 200, Items.graphite, 300));
-			consumes.power(300f/60f);
+			consumePower(300f/60f);
 		}};
 
 		lonsdaleiteCompressor = new GenericCrafter("lonsdaleite-compressor"){{
@@ -52,22 +54,25 @@ public class HMBlocks {
 			craftEffect = Fx.producesmoke;
 			update = true;
 			itemCapacity = 30;
-			consumes.power(0.7f);
-			consumes.item(Items.graphite, 20);
+			consumePower(0.7f);
+			consumeItem(Items.graphite, 20);
 
-			drawer = new HMDrawAnimation(){{
-				frameCount = 4;
+			drawer = new DrawFrames(){{
+				frames = 4;
 			}};
+
 			outputItem = new ItemStack(HMItems.lonsdaleite, 1);
 			requirements(Category.crafting, with(Items.copper, 100, Items.lead, 150, Items.silicon, 250, Items.titanium, 120, Items.graphite, 80));
 		}};
 		
 		heavenlyStrike = new FractalTurret("heavenlyStrike"){{
 			health = 1540;
-      recoilAmount = 0;
-      shots = 3;
+      recoil = 0;
+			shoot = new ShootPattern(){{
+				shots = 3;
+			}};
 		  size = 4;
-			reloadTime = 20f;
+			reload = 20f;
 			shootType = HMBullets.mediumSword;
 			range = (shootType.lifetime * shootType.speed) / 2f;
 			requirements(Category.turret, with(HMItems.lonsdaleite, 150, Items.titanium, 200, Items.lead, 280));
@@ -75,11 +80,12 @@ public class HMBlocks {
 		
 		praefector = new DisabledPredictTurret("praefector"){{
 			health = 1280;
-      recoilAmount = 2;
-			alternate = true;
+      recoil = 2;
+			shoot = new ShootAlternate(){{
+				shots = 2;
+			}};
 		  size = 4;
-			reloadTime = 15f;
-			shots = 2;
+			reload = 15f;
 			shootType = HMBullets.mediumOverseer;
 			range = (shootType.lifetime * shootType.speed) / 1.5f;
 			requirements(Category.turret, with(HMItems.lonsdaleite, 100, Items.titanium, 150, Items.lead, 180));

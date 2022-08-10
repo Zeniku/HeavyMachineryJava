@@ -2,19 +2,11 @@ package heav;
 
 import mindustry.mod.*;
 import heav.content.*;
-import static mindustry.Vars.*;
 
 public class HeavyMachineryJava extends Mod{
 
   public HeavyMachineryJava(){
 
-  }
-
-  @Override
-  public void init(){
-    if(!headless){
-      enableConsole = true;
-    }
   }
 
   @Override

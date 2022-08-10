@@ -65,7 +65,7 @@ public class StatusEffectProjector extends Block{
     
     @Override
     public void updateTile(){
-      if(consValid()){
+      if(consumeTriggerValid()){
 			  eTime = Math.min(eTime + edelta(), reloadTime * 0.25f);
 			  aTime = Math.min(aTime + edelta(), reloadTime);
 			  if(aTime >= reloadTime){
@@ -122,7 +122,7 @@ public class StatusEffectProjector extends Block{
     @Override
 		public void draw(){
 			super.draw();
-			if(consValid()){
+			if(consumeTriggerValid()){
 			  Draw.z(Layer.effect - 0.01f);
 				HMDraw.spike(x, y, starColor, 2f * 2.9f + Mathf.absin(Time.time, 5f, 1f) + Mathf.random(0.1f),  2f * Time.time);
 				HMDraw.spike(x, y, Color.white, 2f * 1.9f + Mathf.absin(Time.time, 5f, 1f) + Mathf.random(0.1f),  2f * Time.time);

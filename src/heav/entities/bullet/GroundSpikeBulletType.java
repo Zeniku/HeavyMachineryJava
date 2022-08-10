@@ -11,7 +11,7 @@ public class GroundSpikeBulletType extends BasicBulletType{
 	public float groundBulletSpacing = 0f;
 	public float groundBulletST = 0f;
 	public Effect groundEffect = Fx.none;
-	public BulletType groundBullet = Bullets.standardCopper;
+	public BulletType groundBullet = Bullets.placeholder;
 	public int groundBullets = 2;
 
 	public GroundSpikeBulletType(float speed, float damage, String sprite){

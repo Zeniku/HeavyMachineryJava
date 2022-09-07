@@ -55,7 +55,7 @@ public class HMBlocks {
 			update = true;
 			itemCapacity = 30;
 			consumePower(0.7f);
-			consumeItem(Items.graphite, 20);
+			consumeItem(Items.graphite, 12);
 
 			drawer = new DrawFrames(){{
 				frames = 4;
@@ -95,6 +95,7 @@ public class HMBlocks {
       dRChance = 15f;
       dRPercentage = 20f;
       health = 520;
+      armor = 4;
 			insulated = true;
       requirements(Category.defense, with(HMItems.lonsdaleite, 6, Items.phaseFabric, 6));
 		}};
@@ -102,8 +103,9 @@ public class HMBlocks {
 		lonsdaleiteWallLarge = new DRWall("lonsdaleiteWallLarge"){{
 			size = 2;
       dRChance = 15f;
-      dRPercentage = 45f;
-		  health = 2800;
+      dRPercentage = 20f;
+      health = 2800;
+      armor = 4;
 			insulated = true;
 			requirements(Category.defense, with(HMItems.lonsdaleite, 24, Items.phaseFabric, 24));
 		}};
@@ -114,6 +116,7 @@ public class HMBlocks {
 				unitType = UnitTypes.alpha;
 				health = 1200;
 				itemCapacity = 1500;
+                                armor = 2;
 				size = 2;
 				unitCapModifier = 0;
 				requirements(Category.effect, with(Items.lead, 1500, Items.silicon, 2000, Items.copper, 1500, Items.titanium, 1500));

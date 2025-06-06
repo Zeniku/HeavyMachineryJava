@@ -4,7 +4,6 @@ import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.util.*;
-import arc.util.io.*;
 import mindustry.content.*;
 import mindustry.type.*;
 import mindustry.entities.*;
@@ -16,14 +15,13 @@ import mindustry.world.meta.*;
 import heav.util.*;
 
 import static mindustry.Vars.*;
-import static heav.util.HMDraw.*;
 
 public class StatusEffectProjector extends Block{
 	
 	public Color starColor = Pal.lightPyraFlame;
-	public float reloadTime = 60f;
+	public float reloadTime = 60f * 3.5f;
   public float range = 160f;
-  public float healPercent = 2f;
+  public float healPercent = 5f;
   public float damage = 20f;
   public StatusEffect allyStatus = StatusEffects.none;
   public StatusEffect enemiesStatus = StatusEffects.burning;
@@ -52,7 +50,7 @@ public class StatusEffectProjector extends Block{
   public void setStats(){
     super.setStats();
     stats.add(Stat.range, range);
-    stats.add(Stat.reload, reloadTime);
+    stats.add(Stat.reload, reloadTime / 60f, StatUnit.perSecond);
   };
 	
   public class StatusEffectProjectorBuild extends Building implements Ranged{
@@ -67,10 +65,13 @@ public class StatusEffectProjector extends Block{
     
     @Override
     public void updateTile(){
-      if(consValid()){		
+      if(consumeTriggerValid()){
 			  eTime = Math.min(eTime + edelta(), reloadTime * 0.25f);
 			  aTime = Math.min(aTime + edelta(), reloadTime);
 			  if(aTime >= reloadTime){
+					wasHealed = false; 
+					appliedAlly = false;
+
 			    Units.nearby(team, x, y, range(), a -> {
 			      if(enableHealing){
 			        if(a.damaged()){
@@ -90,8 +91,16 @@ public class StatusEffectProjector extends Block{
 			      };
 			    });
 			    aTime = 0f;
+
+					if(wasHealed){
+						if(healEffect != Fx.none){
+							healEffect.at(x, y, range, Pal.heal);
+						};
+					};
 			  }
 			  if(eTime >= reloadTime * 0.25f){
+					appliedEnemies = false;
+
 			    HMFunc.radiusEnemies(team, x, y, range(), e -> {
 			      e.apply(enemiesStatus, 60f);
 			      if(statusFxEnemies != Fx.none){
@@ -104,21 +113,16 @@ public class StatusEffectProjector extends Block{
 			    });
 			    eTime = 0f;
 			  };
+
 			  HMFunc.checkEffect(range(), this, appliedEnemies, enableEFxAura, statusFxEnemies, 5f);
 			  HMFunc.checkEffect(range(), this, appliedAlly, enableAFxAura, statusFxAlly, 5f);
-			  
-				if(wasHealed){
-				  if(healEffect != Fx.none){
-				    healEffect.at(x, y);
-				  };
-				};
 			};
     };
 		
     @Override
 		public void draw(){
 			super.draw();
-			if(consValid()){
+			if(consumeTriggerValid()){
 			  Draw.z(Layer.effect - 0.01f);
 				HMDraw.spike(x, y, starColor, 2f * 2.9f + Mathf.absin(Time.time, 5f, 1f) + Mathf.random(0.1f),  2f * Time.time);
 				HMDraw.spike(x, y, Color.white, 2f * 1.9f + Mathf.absin(Time.time, 5f, 1f) + Mathf.random(0.1f),  2f * Time.time);

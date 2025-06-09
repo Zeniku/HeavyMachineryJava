@@ -31,7 +31,6 @@ A Java Mindustry mod ported from js to java
 ### Notes
 This Mod is deprecated
 go to [Caerulem](https://github/Zeniku/Caerulem) instead
-There is a lot planned on this mod but not out yet so keep watch for new updates<br />
 All things on `Adds` is subject to change
 
 Thanks you to [Shit Fabric](https://github.com/Duvent-mindustry) For the Awesome Logo!

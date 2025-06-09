@@ -1,21 +1,13 @@
 package heav.content;
 
-import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.math.geom.*;
-import arc.struct.*;
-import arc.util.*;
 import mindustry.entities.*;
-import mindustry.game.*;
-import mindustry.gen.*;
 import mindustry.graphics.*;
-import mindustry.type.*;
-import mindustry.ui.*;
 import heav.util.*;
 
-import static arc.graphics.g2d.Draw.rect;
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.*;
 import static arc.math.Angles.*;
@@ -37,12 +29,12 @@ public class HMFx {
     int links = Mathf.ceil(dst / range);
     float spacing = dst / links;
 
-    Lines.stroke(d.stroke * e.fout());
-    Draw.color(Color.white, e.color, e.fin());
+    stroke(d.stroke * e.fout());
+    color(Color.white, e.color, e.fin());
 
-    Lines.beginLine();
+    beginLine();
 
-    Lines.linePoint(e.x, e.y);
+    linePoint(e.x, e.y);
 
     rand.setSeed(e.id);
 
@@ -58,10 +50,10 @@ public class HMFx {
         ny = e.y + normy * len + v1.y;
       }
 
-      Lines.linePoint(nx, ny);
+      linePoint(nx, ny);
     }
 
-    Lines.endLine();
+    endLine();
   }).followParent(false).layer(Layer.bullet + 0.01f),
     
     //[length, width, team]
@@ -71,8 +63,8 @@ public class HMFx {
     float length = (float)data[0];
     int tileLength = Mathf.round(length / tilesize);
         
-    Lines.stroke((float)data[1] * e.fout());
-    Draw.color(e.color, Color.white, e.fin());
+    stroke((float)data[1] * e.fout());
+    color(e.color, Color.white, e.fin());
         
     for(int i = 0; i < tileLength; i++){
       float offsetXA = i == 0 ? 0f : Mathf.randomSeed(e.id + (i * 6413), -4.5f, 4.5f);
@@ -89,11 +81,11 @@ public class HMFx {
       v2.trns(e.rotation, offsetYB, offsetXB);
       v2.add(e.x, e.y);
             
-      Lines.line(v1.x, v1.y, v2.x, v2.y, false);
-      Fill.circle(v1.x, v1.y, Lines.getStroke() / 2f);
-      Drawf.light((Team)data[2], v1.x, v1.y, v2.x, v2.y, (float)data[1] * 3f, e.color, 0.4f);
+      line(v1.x, v1.y, v2.x, v2.y, false);
+      Fill.circle(v1.x, v1.y, getStroke() / 2f);
+      Drawf.light(v1.x, v1.y, v2.x, v2.y, (float)data[1] * 3f, e.color, 0.4f);
     }
-    Fill.circle(v2.x, v2.y, Lines.getStroke() / 2);
+    Fill.circle(v2.x, v2.y, getStroke() / 2);
   }).layer(Layer.bullet + 0.01f),
 	
 	flameBurst = new Effect(40, e -> {
@@ -102,10 +94,75 @@ public class HMFx {
 	
 	blockSplash = new Effect(40, e -> {
 	  //e.rotation = block size soo h;
-	  Lines.stroke((2 + e.rotation) * e.fout(), e.color);
-    Lines.square(e.x, e.y, ((8 * e.rotation) / 2) * e.fin());
-	});
-	
+	  stroke((2 + e.rotation) * e.fout(), e.color);
+    square(e.x, e.y, ((tilesize * e.rotation) / 2) * e.fin());
+	}),
+
+  spark = new Effect(40, e -> {
+    color(Pal.lancerLaser);
+    HMDraw.splashLine(e.x, e.y, 4 * e.fout(), 3 * e.fin(), e.id, 4, e.finpow() * 16, e.rotation, 45);
+  }),
+
+  healWave = new Effect(22, e -> {
+    //e.rotation is size
+    HMDraw.lineCircle(e.x, e.y, e.color, e.fout() * 3, 4 + e.finpow() * e.rotation);
+  }),
+
+  critTrail = new Effect(20, e -> {
+    color(Pal.heal);
+    randLenVectors(e.id, 3, 1 + e.fin() * 3, (x, y) -> {
+      Fill.square(e.x + x, e.y + y, e.fout() * 3.3f + 0.5f);
+    });
+  }),
+
+  swordSpawnFx = new Effect(20, e -> {
+    color(Pal.heal);
+    stroke(4 * (1 - e.finpow()));
+    circle(e.x, e.y, 8 * e.finpow());
+  }),
+ 
+  orbExplode = new Effect(45, e -> {
+    color(Pal.lancerLaser);
+    HMDraw.splashLine(e.x, e.y, 10f * e.fout(), 6f * e.fout(), e.id, 20, e.finpow() * (tilesize * 4f), e.rotation, 360f);
+    HMDraw.lineCircle(e.x, e.y, 4f * e.finpow(), (tilesize * 3f) * e.finpow());
+  }),
+
+  boom = new Effect(30, e -> {
+    color(Pal.sapBullet, Pal.sapBulletBack, e.fin());
+    HMDraw.splashCircle(e.x, e.y, 5 * e.fslope(), e.id, 15, e.finpow() * (8 * 5), e.rotation, 360);
+    HMDraw.lineCircle(e.x, e.y, Pal.sapBullet, 4 * e.fout(), (4 * 8) * e.fin());
+    HMDraw.splashLine(e.x, e.y, Pal.sapBullet, Color.valueOf("b28768ff"), e.fin(), 4 * e.fout(), 6 * e.fout(), e.id, 15, e.finpow() * (8 * 5), e.rotation, 360);
+  }),
+
+  bigBoom = new Effect(30, e -> {
+    color(Pal.sapBullet, Pal.sapBulletBack, e.fin());
+    HMDraw.splashCircle(e.x, e.y, 5 * e.fslope(), e.id, 20, e.finpow() * (8 * 10), e.rotation, 360);
+    HMDraw.lineCircle(e.x, e.y, 4 * e.fout(), (6 * 7) * e.finpow());
+    HMDraw.lineCircle(e.x, e.y, 6 * e.fout(), (6 * 11) * e.finpow());
+    HMDraw.splashLine(e.x, e.y, Pal.sapBullet, Color.valueOf("b28768ff"), e.fin(), 4 * e.fout(), 6 * e.fout(), e.id, 20, e.finpow() * (8 * 10), e.rotation, 360);
+  }),
+
+  laserCharge = new Effect(80, e -> {
+    color(Pal.sapBullet, Pal.sapBulletBack, e.fin());
+    HMDraw.splashCircle(e.x, e.y, 5 * e.fslope(), e.id, 20, (1 - e.finpow()) * (8 * 6), e.rotation, 360);
+    HMDraw.lineCircle(e.x, e.y, 4 * e.fin(), (6 * 7) * (1 - e.finpow()));
+    HMDraw.lineCircle(e.x, e.y, 4 * e.fin(), (6 * 11) * (1 - e.finpow()));
+    color(Pal.sapBullet);
+    Fill.circle(e.x, e.y, 10 * e.fin());
+    color(Color.white);
+    Fill.circle(e.x, e.y, 8 * e.fin());
+  }),
+
+  earthDust = new Effect(20, e -> {
+    color(e.color);
+    HMDraw.splashCircle(e.x, e.y, 2.5f * e.fslope(), e.id, 10, e.finpow() * 10, e.rotation, 360);
+  }).layer(Layer.debris),
+
+  earthDustII = new Effect(30, e -> {
+    color(e.color);
+    HMDraw.splashCircle(e.x, e.y, 5 * e.fslope(), e.id, 20, e.finpow() * 20, e.rotation, 360);
+  }).layer(Layer.debris);
+
 	public static class LightningData{
     Position pos;
     float stroke;

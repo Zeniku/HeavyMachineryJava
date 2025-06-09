@@ -1,19 +1,11 @@
 package heav.world.blocks.defense;
 
-import arc.*;
-import arc.audio.*;
 import arc.graphics.*;
-import arc.graphics.g2d.*;
 import arc.math.*;
-import arc.util.*;
-import mindustry.entities.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
-import mindustry.world.*;
 import mindustry.world.blocks.defense.*;
 import heav.content.*;
-
-import static mindustry.Vars.*;
 
 public class DRWall extends Wall{
   public float dRChance = 10f;

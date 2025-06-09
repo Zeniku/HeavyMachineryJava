@@ -8,8 +8,6 @@ import mindustry.entities.*;
 import mindustry.content.*;
 import mindustry.gen.*;
 
-import static mindustry.Vars.*;
-
 public class HMFunc{
 	public static void radiusEnemies(Team team, float x, float y, float radius, Cons<Unit> cons){
     Units.nearbyEnemies(team, x - radius, y - radius, radius * 2f, radius * 2f, unit -> {
